@@ -268,6 +268,7 @@ function playerOneShot(shotArr) {
         registerHit(1, shotArr);
         playerTwoShipLayout[shotArr[0]][shotArr[1]] = 1;
     };
+    if (shotPlacement === null) playerTwoShipLayout[shotArr[0]][shotArr[1]] = -1;
     // turnBs *= -1;
     renderBs(playerOneShipLayout, playerTwoShipLayout);
 };
