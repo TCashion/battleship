@@ -37,7 +37,7 @@ let shipIdentified;
 
 const playerOneRadarDivEls = document.getElementById("playerOneRadar");
 const playerOneDisplayDivEls = document.getElementById("playerOneDisplay");
-const targetDisplay = document.getElementsByClassName("battleship-target-display")[0];
+const targetDisplayEl = document.querySelector(".battleship-target-display");
 const targetInput = document.getElementById("battleship-target-input");
 class Ship {
     constructor(type, identifier, length, hitSpaces) {
@@ -53,7 +53,7 @@ class Ship {
 
 /*----- event listeners -----*/
 
-targetDisplay.addEventListener("click", function(e) {
+targetDisplayEl.addEventListener("click", function(e) {
     e.preventDefault(); 
     const eventTarget = e.target.id;
     if (eventTarget === "battleship-render-button") initBs();
