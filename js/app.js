@@ -296,6 +296,8 @@ function playerTwoShot() {
     const colIdx = randomNumber(9);
     const shotArr = [rowIdx, colIdx];
     let shotPlacement = playerOneShipLayout[shotArr[0]][shotArr[1]];
+    // pick up here. Need to figure out response for duplicate shots. 
+    if (shotPlacement === 1 || shotPlacement === -1) console.log("duplicate") // playerTwoShot(); 
     if (typeof shotPlacement === "string") {
         registerHit(-1, shotArr);
         playerOneShipLayout[shotArr[0]][shotArr[1]] = 1;
@@ -304,41 +306,3 @@ function playerTwoShot() {
     turnBs *= -1;
     renderBs(playerOneShipLayout, playerTwoShipLayout);
 }
-
-
-// MODULE takeShot(turn, xCoordinate, yCoordinate)      // (-1 = miss, 1 = hit)
-//         IF turn = 1
-//             update playerTwoBoard at position (xCoordinate, yCoordinate)
-//                 If playerTwoBoard(xCoordinate, yCoordinate) = null
-//                     UPDATE to -1 (miss)     
-//                     RENDER() board 
-//                     checkWinner()
-//                     CHANGE turn (turn *= -1)     
-//                 If playerTwoBoard(xCoordinate, yCoordinate) = 0
-//                     UPDATE to 1 (hit)     
-//                     trackHits(-1)      
-//                     RENDER() board
-//                     checkWinner()
-//                     CHANGE turn
-//                 If playerTwoBoard(xCoordinate, yCoordinate) = 1 or -1
-//                     ALERT "You've already tried to shoot there!"
-//                     CLEAR input form and wait for playerOne to try again        
-//         ELSE IF turn = -1
-//                 If playerOneBoard(xCoordinate, yCoordinate) = null
-//                     UPDATE to -1 (miss)   
-//                     RENDER() board        
-//                     CHANGE turn
-//                 If playerOneBoard(xCoordinate, yCoordinate) = 0
-//                     UPDATE to 1 (hit)    
-//                     trackHits(1)       
-//                     RENDER() board
-//                     playerTwoHit = 1 
-//                     engageAi = 1
-//                     aiHits = {
-//                             hits: (xCoordinate, yCoordinate)
-//                     }
-//                     CHANGE turn
-//                 If playerOneBoard(xCoordinate, yCoordinate) = 1 or -1
-//                     no change to board
-//                     RUN randomShot() again 
-// END MODULE
