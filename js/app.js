@@ -265,17 +265,7 @@ function playerOneShot(shotArr) {
     console.log(shotArr);
     let shotPlacement = playerTwoShipLayout[shotArr[0]][shotArr[1]];
     if (typeof shotPlacement === "string") {
-        playerTwoShips.forEach(function(ship) {
-            ship.boardLocation.forEach(function(location) {
-                if (location.row === shotArr[0] && location.col === shotArr[1]) {
-                    location.row = shotArr[0];
-                    location.col = shotArr[1];
-                    location.hit = true; 
-                    ship.hitSpaces += 1;
-                    ship.checkIfAlive(); 
-                };
-            });
-        });
+        registerHit(1, shotArr);
         playerTwoShipLayout[shotArr[0]][shotArr[1]] = 1;
     };
     // turnBs *= -1;
@@ -283,8 +273,21 @@ function playerOneShot(shotArr) {
 };
 
 function registerHit(player, shotArr) {
-    
-}
+    let shipsToUpdate;
+    if (player === 1) shipsToUpdate = playerTwoShips;
+    if (player === -1) shipsToUpdate = playerOneShips;
+    shipsToUpdate.forEach(function(ship) {
+        ship.boardLocation.forEach(function(location) {
+            if (location.row === shotArr[0] && location.col === shotArr[1]) {
+                location.row = shotArr[0];
+                location.col = shotArr[1];
+                location.hit = true; 
+                ship.hitSpaces += 1;
+                ship.checkIfAlive(); 
+            };
+        });
+    });
+};
 
 
 // MODULE takeShot(turn, xCoordinate, yCoordinate)      // (-1 = miss, 1 = hit)
