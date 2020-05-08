@@ -48,6 +48,11 @@ class Ship {
         this.alive = true;
         this.boardLocation = [];
     } 
+    checkIfAlive() {
+        if (this.hitSpaces === this.length) {
+            this.alive = false; 
+        }
+    }
 };
 
 
@@ -267,16 +272,17 @@ function playerOneShot(shotArr) {
                     location.col = shotArr[1];
                     location.hit = true; 
                     ship.hitSpaces += 1;
+                    ship.checkIfAlive(); 
                 };
             });
         });
         playerTwoShipLayout[shotArr[0]][shotArr[1]] = 1;
     };
-    turn *= -1;
-    render
+    // turnBs *= -1;
+    renderBs(playerOneShipLayout, playerTwoShipLayout);
 };
 
-function registerHit(player) {
+function registerHit(player, shotArr) {
     
 }
 
