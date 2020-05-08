@@ -3,7 +3,7 @@
 
      Wireframe:
 
-     ![Battleship Wireframe](https://imgur.com/dswIWhb.jpg)
+![Battleship Wireframe](https://imgur.com/dswIWhb.jpg)
             
      ``` 
      Psuedocode:
