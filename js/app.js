@@ -269,8 +269,9 @@ function playerOneShot(shotArr) {
         playerTwoShipLayout[shotArr[0]][shotArr[1]] = 1;
     };
     if (shotPlacement === null) playerTwoShipLayout[shotArr[0]][shotArr[1]] = -1;
-    // turnBs *= -1;
+    turnBs *= -1;
     renderBs(playerOneShipLayout, playerTwoShipLayout);
+    playerTwoShot(); 
 };
 
 function registerHit(player, shotArr) {
@@ -289,6 +290,20 @@ function registerHit(player, shotArr) {
         });
     });
 };
+
+function playerTwoShot() {
+    const rowIdx = randomNumber(9);
+    const colIdx = randomNumber(9);
+    const shotArr = [rowIdx, colIdx];
+    let shotPlacement = playerOneShipLayout[shotArr[0]][shotArr[1]];
+    if (typeof shotPlacement === "string") {
+        registerHit(-1, shotArr);
+        playerOneShipLayout[shotArr[0]][shotArr[1]] = 1;
+    };
+    if (shotPlacement === null) playerOneShipLayout[shotArr[0]][shotArr[1]] = -1;
+    turnBs *= -1;
+    renderBs(playerOneShipLayout, playerTwoShipLayout);
+}
 
 
 // MODULE takeShot(turn, xCoordinate, yCoordinate)      // (-1 = miss, 1 = hit)
