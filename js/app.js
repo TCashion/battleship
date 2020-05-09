@@ -262,16 +262,20 @@ function translateShot(shot) {
 };  
 
 function playerOneShot(shotArr) {
-    console.log(shotArr);
     let shotPlacement = playerTwoShipLayout[shotArr[0]][shotArr[1]];
     if (typeof shotPlacement === "string") {
         registerHit(1, shotArr);
         playerTwoShipLayout[shotArr[0]][shotArr[1]] = 1;
     };
     if (shotPlacement === null) playerTwoShipLayout[shotArr[0]][shotArr[1]] = -1;
-    turnBs *= -1;
-    renderBs(playerOneShipLayout, playerTwoShipLayout);
-    playerTwoShot(); 
+    if (shotPlacement === 1 || shotPlacement === -1) {
+         turnBs = 1;
+         alert("You've already taken that shot");
+    } else {
+        turnBs *= -1;
+        renderBs(playerOneShipLayout, playerTwoShipLayout);
+        playerTwoShot(); 
+    };
 };
 
 function registerHit(player, shotArr) {
@@ -295,14 +299,18 @@ function playerTwoShot() {
     const rowIdx = randomNumber(9);
     const colIdx = randomNumber(9);
     const shotArr = [rowIdx, colIdx];
+    console.log(shotArr);
     let shotPlacement = playerOneShipLayout[shotArr[0]][shotArr[1]];
-    // pick up here. Need to figure out response for duplicate shots. 
-    if (shotPlacement === 1 || shotPlacement === -1) console.log("duplicate") // playerTwoShot(); 
     if (typeof shotPlacement === "string") {
         registerHit(-1, shotArr);
         playerOneShipLayout[shotArr[0]][shotArr[1]] = 1;
     };
     if (shotPlacement === null) playerOneShipLayout[shotArr[0]][shotArr[1]] = -1;
-    turnBs *= -1;
-    renderBs(playerOneShipLayout, playerTwoShipLayout);
-}
+    if (shotPlacement === 1 || shotPlacement === -1) {
+        turnBs = -1; 
+        playerTwoShot(); 
+    } else {
+        turnBs *= -1;
+        renderBs(playerOneShipLayout, playerTwoShipLayout);
+    };
+};
