@@ -61,6 +61,8 @@ class aiShip extends Ship {
         this.positionKnown = false; 
         this.hitSpaces = 0; 
         this.alive = true; 
+        this.knownHits = []; 
+        this.knownMisses = []; 
     }
     determineDirection() {
         console.log("direction");
@@ -89,6 +91,7 @@ targetDisplayEl.addEventListener("click", function(e) {
 
 function initBs() {
     turnBs = 1; 
+    engageAi = false; 
     playerOneRadarDivEls.forEach(div => div.innerText = "");
     playerOneDisplayDivEls.forEach(div => div.innerText = "");
     playerOneShipLayout = defineBoard(playerOneShipLayout);
@@ -330,7 +333,7 @@ function registerHit(player, shotArr) {
     if (player === 1) shipsToUpdate = playerTwoShips;
     if (player === -1) {
         shipsToUpdate = playerOneShips;
-        updatePlayerTwoIntel(shotArr); 
+        updatePlayerTwoIntel(1, shotArr); 
     };
     shipsToUpdate.forEach(function(ship) {
         ship.boardLocation.forEach(function(location) {
@@ -346,19 +349,44 @@ function registerHit(player, shotArr) {
 };
 
 // updates playerTwo AI object
-function updatePlayerTwoIntel(shotArr) {
+function updatePlayerTwoIntel(hitOrMiss, shotArr) {
     let hitShipIdentifier = playerOneShipLayout[shotArr[0]][shotArr[1]]; 
+    if (hitOrMiss === 1) {
+        playerTwoAiObj.forEach(function(ship) {
+            if (ship.identifier === hitShipIdentifier) {
+                console.log(`Player 2 hit Player 1's ${ship.type}`);
+                ship.hitSpaces += 1;
+                ship.positionKnown = true; 
+                const newCoord = {
+                    row: shotArr[0],
+                    col: shotArr[1]
+                };
+                ship.knownHits.push(newCoord);
+            };
+        });
+    };
+    if (hitOrMiss === -1) {
+
+    };
+};
+
+// handle shot based on AI
+function playerTwoShot() {
     playerTwoAiObj.forEach(function(ship) {
-        if (ship.identifier === hitShipIdentifier) {
-            console.log(`Player 2 hit Player 1's ${ship.type}`);
-            ship.hitSpaces += 1;
-            ship.positionKnown = true; 
+        if (ship.positionKnown === true && ship.alive === true) {
+            engageAi = true; 
         };
     });
+    if (engageAi === false) {
+        playerTwoRandomShot();
+    } else {
+        console.log("need to engageAI: ", engageAi);
+        playerTwoRandomShot(); // for testing
+    };
 };
 
 // playerTwo random shot (if AI is not engaged)
-function playerTwoShot() {
+function playerTwoRandomShot() {
     const rowIdx = randomNumber(9);
     const colIdx = randomNumber(9);
     const shotArr = [rowIdx, colIdx];
@@ -370,7 +398,7 @@ function playerTwoShot() {
     if (shotPlacement === null) playerOneShipLayout[shotArr[0]][shotArr[1]] = -1;
     if (shotPlacement === 1 || shotPlacement === -1) {
         turnBs = -1; 
-        playerTwoShot(); 
+        playerTwoRandomShot(); 
     } else {
         turnBs *= -1;
         renderBs(playerOneShipLayout, playerTwoShipLayout);
