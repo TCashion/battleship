@@ -375,14 +375,23 @@ function playerTwoShot() {
     playerTwoAiObj.forEach(function(ship) {
         if (ship.positionKnown === true && ship.alive === true) {
             engageAi = true; 
+            playerTwoAiShot(ship);
         };
     });
     if (engageAi === false) {
         playerTwoRandomShot();
-    } else {
-        console.log("need to engageAI: ", engageAi);
-        playerTwoRandomShot(); // for testing
-    };
+    }; 
+};
+
+// shot at same ship until it sinks
+function playerTwoAiShot(targetShip) {
+    console.log("shoot at player One's", targetShip.type);
+    console.log("last hit: ", targetShip.knownHits);
+    console.log(`next hit is one space up: row(${targetShip.knownHits[0].row - 1}) col(${targetShip.knownHits[0].col})`);
+    console.log(`current value of next hit space: ${playerOneShipLayout[targetShip.knownHits[0].row - 1][targetShip.knownHits[0].col]}`);
+    const shotArr = [targetShip.knownHits[0].row - 1, targetShip.knownHits[0].col]
+    playerTwoSpecificShot(shotArr); 
+    // playerTwoRandomShot();      // this verifies flow control 
 };
 
 // playerTwo random shot (if AI is not engaged)
@@ -404,3 +413,20 @@ function playerTwoRandomShot() {
         renderBs(playerOneShipLayout, playerTwoShipLayout);
     };
 };
+
+function playerTwoSpecificShot(shotArr) {
+    let shotPlacement = playerOneShipLayout[shotArr[0]][shotArr[1]];
+    if (typeof shotPlacement === "string") {
+        registerHit(-1, shotArr);
+        playerOneShipLayout[shotArr[0]][shotArr[1]] = 1;
+    };
+    if (shotPlacement === null) playerOneShipLayout[shotArr[0]][shotArr[1]] = -1;
+    if (shotPlacement === 1 || shotPlacement === -1) {
+        turnBs = -1; 
+        playerTwoRandomShot(); 
+    } else {
+        turnBs *= -1;
+        renderBs(playerOneShipLayout, playerTwoShipLayout);
+    };
+};
+
