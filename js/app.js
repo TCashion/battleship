@@ -39,6 +39,7 @@ const playerOneRadarDivEls = document.querySelectorAll("#playerOneRadar .battles
 const playerOneDisplayDivEls = document.querySelectorAll("#playerOneDisplay .battleship-panel");
 const targetDisplayEl = document.querySelector(".battleship-target-display");
 const targetInput = document.getElementById("battleship-target-input");
+const targetInputLabel = document.querySelector("#battleship-input-form > label");
 class Ship {
     constructor(type, identifier, length, hitSpaces) {
         this.type = type; 
@@ -294,9 +295,11 @@ function playerOneShot(shotArr) {
     };
     if (shotPlacement === null) playerTwoShipLayout[shotArr[0]][shotArr[1]] = -1;
     if (shotPlacement === 1 || shotPlacement === -1) {
-         turnBs = 1;
-         alert("You've already taken that shot");
+        turnBs = 1;
+        targetInputLabel.style.display = "block";
+        targetInputLabel.innerText = "You've already taken that shot!";
     } else {
+        targetInputLabel.style.display = "none";
         turnBs *= -1;
         renderBs(playerOneShipLayout, playerTwoShipLayout);
         playerTwoShot(); 

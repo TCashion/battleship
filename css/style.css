@@ -580,6 +580,11 @@ Gameboard Styles
     padding: 10px; 
 }
 
+#battleship-input-form > label {
+    display: none; 
+    color: red; 
+}
+
 #battleship-target-input {
     width: 100%;
     font-size: 1.2rem;
