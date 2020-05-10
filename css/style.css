@@ -509,8 +509,6 @@ Gameboard Styles
 
 .sudoku-gamerow {
     display: flex;
-    /* width: 300px; */
-    /* height: 100px; */
     margin: 0 auto; 
 }
 
@@ -554,6 +552,12 @@ Gameboard Styles
     background-color: var(--main-plus-two);
     border-radius: 5px;
     margin: 1px; 
+}
+
+.battleship-panel {
+    text-align: center;
+    padding: 25%;
+    font-size: 0.8rem;
 }
 
 .battleship-label {
@@ -765,4 +769,9 @@ Media Queries
         font-size: 1.4rem;
     }
 
+    .battleship-panel {
+        text-align: center;
+        padding: 25%;
+        font-size: 1.6rem;
+    }
 }

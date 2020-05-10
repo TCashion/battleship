@@ -35,8 +35,8 @@ let shipIdentified;
 
 /*----- cached element references -----*/
 
-const playerOneRadarDivEls = document.getElementById("playerOneRadar");
-const playerOneDisplayDivEls = document.getElementById("playerOneDisplay");
+const playerOneRadarDivEls = document.querySelectorAll("#playerOneRadar .battleship-panel");
+const playerOneDisplayDivEls = document.querySelectorAll("#playerOneDisplay .battleship-panel");
 const targetDisplayEl = document.querySelector(".battleship-target-display");
 const targetInput = document.getElementById("battleship-target-input");
 class Ship {
@@ -77,6 +77,8 @@ targetDisplayEl.addEventListener("click", function(e) {
 
 function initBs() {
     turnBs = 1; 
+    playerOneRadarDivEls.forEach(div => div.innerText = "");
+    playerOneDisplayDivEls.forEach(div => div.innerText = "");
     createShips();
     playerOneShipLayout = defineBoard(playerOneShipLayout);
     playerTwoShipLayout = defineBoard(playerTwoShipLayout);
@@ -84,12 +86,14 @@ function initBs() {
     updateShipObjects(1);
     updateShipObjects(-1);
     renderBs(playerOneShipLayout, playerTwoShipLayout);
-    renderDestroyed();
+    
 }
 
 function renderBs(playerOneShipLayout, playerTwoShipLayout) {
+    
     matchArraysToDom(playerOneShipLayout);
     matchArraysToDom(playerTwoShipLayout);
+    renderDestroyed();
 };
 
 function defineBoard(playerXShipLayout) {
@@ -250,7 +254,15 @@ function updateShipObjects(player) {
 
 // change destroyed ship colors to red
 function renderDestroyed() {
-
+    playerTwoShips.forEach(function(ship) {
+        if (ship.alive === false) {
+            ship.boardLocation.forEach(function(location) {
+                const divEl = document.getElementById(`x${location.col}y${location.row}`);
+                divEl.style.backgroundColor = "red";
+                divEl.innerText = ship.identifier; 
+            });
+        };
+    });
 };
 
 // translate shot from user input into data coordinates
