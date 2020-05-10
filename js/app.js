@@ -65,9 +65,14 @@ class aiShip extends Ship {
         this.knownMisses = []; 
     }
     determineDirection() {
-        console.log("direction");
+        if (this.knownHits[0].row === this.knownHits[1].row) {
+            this.direction = "horizontal";
+        };
+        if (this.knownHits[0].col === this.knownHits[1].col) {
+            this.direction = "vertical";
+        };
     };
-}
+};
 
 /*----- event listeners -----*/
 
@@ -245,7 +250,7 @@ function parseShipVert(playerBoardToAddShip, startingColCoord, startingRowCoord,
     }
 };
 
-// update the data in each player's ship objects, according to ship placements
+// at game start, update the data in each player's ship objects, according to random ship placements
 function updateShipObjects(player) {
     let shipArrayToUpdate;
     let shipLayoutToScan; 
@@ -381,6 +386,9 @@ function playerTwoShot() {
     if (engageAi === false) {
         playerTwoRandomShot();
     }; 
+    playerTwoAiObj.forEach(function(ship) {
+        if (ship.knownHits.length > 1) ship.determineDirection(); 
+    });
 };
 
 // shot at same ship until it sinks
