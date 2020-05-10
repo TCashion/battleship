@@ -31,7 +31,7 @@ let playerOneShipLayout;
 let playerTwoShipLayout;
 let engageAi;                 
 let aiHits;
-let shipIdentified;
+let playerTwoAiObj;
 
 /*----- cached element references -----*/
 
@@ -45,7 +45,7 @@ class Ship {
         this.type = type; 
         this.identifier = identifier;
         this.length = length; 
-        this.hitSpaces = hitSpaces;
+        this.hitSpaces = 0;
         this.alive = true;
         this.boardLocation = [];
     } 
@@ -55,7 +55,18 @@ class Ship {
         }
     }
 };
-
+class aiShip extends Ship {
+    constructor(type, identifier, length) {
+        super(type, identifier, length);
+        this.direction = null;
+        this.positionKnown = false; 
+        this.hitSpaces = 0; 
+        this.alive = true; 
+    }
+    determineDirection() {
+        console.log("direction");
+    };
+}
 
 /*----- event listeners -----*/
 
@@ -81,9 +92,9 @@ function initBs() {
     turnBs = 1; 
     playerOneRadarDivEls.forEach(div => div.innerText = "");
     playerOneDisplayDivEls.forEach(div => div.innerText = "");
-    createShips();
     playerOneShipLayout = defineBoard(playerOneShipLayout);
     playerTwoShipLayout = defineBoard(playerTwoShipLayout);
+    createShips();
     addShipsToBoard();
     updateShipObjects(1);
     updateShipObjects(-1);
@@ -148,18 +159,25 @@ function generateBoardColors(shipLayout, rowIdx, colIdx) {
 function createShips() {
     playerOneShips = [];
     playerTwoShips= [];
-    const carrier = new Ship("carrier", "A", 5, 0 ,true);
-    const battleship = new Ship("battleship", "B", 4, 0 ,true);
-    const cruiser = new Ship("cruiser", "C", 3, 0 ,true);
-    const submarine = new Ship("submarine", "S", 3, 0 ,true);
-    const destroyer = new Ship("destroyer", "D", 2, 0 ,true);
-    const carrierTwo = new Ship("carrier", "A", 5, 0 ,true);
-    const battleshipTwo = new Ship("battleship", "B", 4, 0 ,true);
-    const cruiserTwo = new Ship("cruiser", "C", 3, 0 ,true);
-    const submarineTwo = new Ship("submarine", "S", 3, 0 ,true);
-    const destroyerTwo = new Ship("destroyer", "D", 2, 0 ,true);
+    playerTwoAiObj = [];
+    const carrier = new Ship("carrier", "A", 5);
+    const battleship = new Ship("battleship", "B", 4);
+    const cruiser = new Ship("cruiser", "C", 3);
+    const submarine = new Ship("submarine", "S", 3);
+    const destroyer = new Ship("destroyer", "D", 2);
+    const carrierTwo = new Ship("carrier", "A", 5);
+    const battleshipTwo = new Ship("battleship", "B", 4);
+    const cruiserTwo = new Ship("cruiser", "C", 3);
+    const submarineTwo = new Ship("submarine", "S", 3);
+    const destroyerTwo = new Ship("destroyer", "D", 2);
+    const carrierAi = new aiShip("carrier", "A", 5);
+    const battleshipAi = new aiShip("battleship", "B", 4);
+    const cruiserAi = new aiShip("cruiser", "C", 3);
+    const submarineAi = new aiShip("submarine", "S", 3);
+    const destroyerAi = new aiShip("destroyer", "D", 2);
     playerOneShips.push(carrier, battleship, cruiser, submarine, destroyer);
     playerTwoShips.push(carrierTwo, battleshipTwo, cruiserTwo, submarineTwo, destroyerTwo);
+    playerTwoAiObj.push(carrierAi, battleshipAi, cruiserAi, submarineAi, destroyerAi);
 };
 
 // adds ships to player board data objects
