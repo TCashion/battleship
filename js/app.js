@@ -90,10 +90,10 @@ function initBs() {
 }
 
 function renderBs(playerOneShipLayout, playerTwoShipLayout) {
-    
     matchArraysToDom(playerOneShipLayout);
     matchArraysToDom(playerTwoShipLayout);
-    renderDestroyed();
+    renderDestroyed(playerOneShips);
+    renderDestroyed(playerTwoShips);
 };
 
 function defineBoard(playerXShipLayout) {
@@ -253,11 +253,16 @@ function updateShipObjects(player) {
 };
 
 // change destroyed ship colors to red
-function renderDestroyed() {
-    playerTwoShips.forEach(function(ship) {
+function renderDestroyed(playerXShips) {
+    playerXShips.forEach(function(ship) {
         if (ship.alive === false) {
             ship.boardLocation.forEach(function(location) {
-                const divEl = document.getElementById(`x${location.col}y${location.row}`);
+                let divEl; 
+                if (playerXShips === playerOneShips) {
+                    divEl = document.getElementById(`X${location.col}Y${location.row}`);
+                } else if (playerXShips === playerTwoShips) {
+                    divEl = document.getElementById(`x${location.col}y${location.row}`);
+                };
                 divEl.style.backgroundColor = "red";
                 divEl.innerText = ship.identifier; 
             });
