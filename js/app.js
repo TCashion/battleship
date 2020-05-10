@@ -69,7 +69,8 @@ targetDisplayEl.addEventListener("click", function(e) {
             targetInput.value = ""; 
             playerOneShot(translateShot(shot));
         } else {
-            alert("Not a valid shot");
+            targetInputLabel.innerText = "Not a valid shot";
+            targetInputLabel.style.display = "block";
         };
     };
 });
