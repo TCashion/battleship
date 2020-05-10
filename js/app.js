@@ -30,7 +30,6 @@ let playerTwoShips;
 let playerOneShipLayout;
 let playerTwoShipLayout;
 let engageAi;                 
-let aiHits;
 let playerTwoAiObj;
 
 /*----- cached element references -----*/
@@ -329,7 +328,10 @@ function playerOneShot(shotArr) {
 function registerHit(player, shotArr) {
     let shipsToUpdate;
     if (player === 1) shipsToUpdate = playerTwoShips;
-    if (player === -1) shipsToUpdate = playerOneShips;
+    if (player === -1) {
+        shipsToUpdate = playerOneShips;
+        updatePlayerTwoIntel(shotArr); 
+    };
     shipsToUpdate.forEach(function(ship) {
         ship.boardLocation.forEach(function(location) {
             if (location.row === shotArr[0] && location.col === shotArr[1]) {
@@ -340,6 +342,18 @@ function registerHit(player, shotArr) {
                 ship.checkIfAlive(); 
             };
         });
+    });
+};
+
+// updates playerTwo AI object
+function updatePlayerTwoIntel(shotArr) {
+    let hitShipIdentifier = playerOneShipLayout[shotArr[0]][shotArr[1]]; 
+    playerTwoAiObj.forEach(function(ship) {
+        if (ship.identifier === hitShipIdentifier) {
+            console.log(`Player 2 hit Player 1's ${ship.type}`);
+            ship.hitSpaces += 1;
+            ship.positionKnown = true; 
+        };
     });
 };
 
