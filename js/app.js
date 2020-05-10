@@ -84,6 +84,7 @@ function initBs() {
     updateShipObjects(1);
     updateShipObjects(-1);
     renderBs(playerOneShipLayout, playerTwoShipLayout);
+    renderDestroyed();
 }
 
 function renderBs(playerOneShipLayout, playerTwoShipLayout) {
@@ -218,7 +219,7 @@ function parseShipVert(playerBoardToAddShip, startingColCoord, startingRowCoord,
     }
 };
 
-// updates the data in each player's ship objects, according to ship placements
+// update the data in each player's ship objects, according to ship placements
 function updateShipObjects(player) {
     let shipArrayToUpdate;
     let shipLayoutToScan; 
@@ -247,6 +248,12 @@ function updateShipObjects(player) {
     });
 };
 
+// change destroyed ship colors to red
+function renderDestroyed() {
+
+};
+
+// translate shot from user input into data coordinates
 function translateShot(shot) {
     let shotArr = shot.split("");
     const shotRowIdx = alphabet.indexOf(shotArr[0].toUpperCase()); 
@@ -261,6 +268,7 @@ function translateShot(shot) {
     return shotArr; 
 };  
 
+// handle player one shot submission
 function playerOneShot(shotArr) {
     let shotPlacement = playerTwoShipLayout[shotArr[0]][shotArr[1]];
     if (typeof shotPlacement === "string") {
@@ -278,6 +286,7 @@ function playerOneShot(shotArr) {
     };
 };
 
+// update ship data if ship is hit
 function registerHit(player, shotArr) {
     let shipsToUpdate;
     if (player === 1) shipsToUpdate = playerTwoShips;
@@ -295,11 +304,11 @@ function registerHit(player, shotArr) {
     });
 };
 
+// playerTwo random shot (if AI is not engaged)
 function playerTwoShot() {
     const rowIdx = randomNumber(9);
     const colIdx = randomNumber(9);
     const shotArr = [rowIdx, colIdx];
-    console.log(shotArr);
     let shotPlacement = playerOneShipLayout[shotArr[0]][shotArr[1]];
     if (typeof shotPlacement === "string") {
         registerHit(-1, shotArr);
