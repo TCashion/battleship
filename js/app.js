@@ -19,7 +19,7 @@ const boardColors = {
 };
 boardLength = 10;
 const alphabet = ["A","B","C","D","E","F","G","H","I","J"];
-const inputRegEx = /([A-Ja-j][1][0]|[A-Ja-j][1-9])\b/;
+const inputRegEx = /(^[A-Ja-j][1][0]$|^[A-Ja-j][1-9]$)\b/;
 
 /*----- app's state (variables) -----*/
 
