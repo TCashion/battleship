@@ -240,6 +240,39 @@ Psuedocode:
 
                MODULE opponentAi(hit)
 
+                    * iterate through playerTwoAiObject
+                         * If no open ships, 
+                              * take reandom shot
+                         * If one or more open ships, 
+                              * STOP on the first open ship (position known is true, is-alive is true)
+                              * if there's only one hit, no misses, take the last shot (y - 1) to shoot one cell above
+                                   * track shot result
+                                        * if miss, register it as a miss
+                                        * if hit but another ship, register it as a miss for current ship
+                                             * register as hit for 2nd ship 
+                                                  * update AiObject with known position 
+                                        * if hit on target ship, update hit coordinates
+                              * if there are two hits and no misses
+                                   * if (y-2) is already a miss, register it as a miss
+                                        * this location is the "cap"
+                                        * fill out board locations 
+                                             * WILL NEED MODULE FOR THIS 
+                                   * if (y-2) is off the board, fill in board location
+                                        * this means the edge of the board is the "cap"
+                                   * if (y-2) has not been shot at yet, make that the next shot
+                                        * if it's a miss, (y-2) is the "cap"
+                                             * flesh out board locations
+                                        * if it's a hit but on a different ship, (y-2) is the cap
+                                             * flesh out board locations
+                                        * if it's a hit on the same ship, and ship is still alive, next shot is (y - 3)
+                              * if there are two hits and one miss
+                                   * miss location is the "cap"
+                                        * function to flesh out remaining board locations
+                                   * subsequent shots will fill in boardLocations until knownHits is equal to / has all the same values as boardLocations 
+
+
+
+
                     IF engageAi = 0
                          BREAK
                     ELSE
