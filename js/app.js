@@ -423,7 +423,6 @@ function updatePlayerTwoIntel(hitOrMiss, shotArr) {
     if (hitOrMiss === 1) {
         playerTwoAiObj.forEach(function(ship) {
             if (ship.identifier === hitShipIdentifier) {
-                console.log(`Player 2 hit Player 1's ${ship.type}`);
                 ship.hitSpaces += 1;
                 ship.positionKnown = true; 
                 const newCoord = {
