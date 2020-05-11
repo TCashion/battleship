@@ -72,6 +72,20 @@ class aiShip extends Ship {
             this.direction = "vertical";
         };
     };
+    determineNextShot() {
+        let shotArr; 
+        if (this.knownHits.length === 1) {
+            // console.log("next shot is ", [this.knownHits[0].row - 1, this.knownHits[0].col])
+            shotArr = [this.knownHits[0].row - 1, this.knownHits[0].col];
+        };
+        if (this.knownHits.length === 2) {
+            if (this.direction === "vertical") {
+                // console.log("next shot is ", [this.knownHits[0].row - 2, this.knownHits[0].col])
+                shotArr [this.knownHits[0].row - 2, this.knownHits[0].col]
+            };
+        };
+        return shotArr; 
+    };
 };
 
 /*----- event listeners -----*/
@@ -375,31 +389,44 @@ function updatePlayerTwoIntel(hitOrMiss, shotArr) {
     };
 };
 
-// handle shot based on AI
+// handle shot based on AI status 
 function playerTwoShot() {
-    playerTwoAiObj.forEach(function(ship) {
+    let targetShip = null; 
+    // playerTwoAiObj.forEach(function(ship) {
+    //     if (ship.positionKnown === true && ship.alive === true) {
+    //         engageAi = true; 
+    //         playerTwoAiShot(ship);
+    //     };
+    // }); // switch out for below, which returns the first match 
+    playerTwoAiObj.find(function(ship) {
         if (ship.positionKnown === true && ship.alive === true) {
             engageAi = true; 
-            playerTwoAiShot(ship);
-        };
+            targetShip = ship; 
+            return targetShip;
+        }; 
     });
     if (engageAi === false) {
         playerTwoRandomShot();
+    } else {
+        playerTwoAiShot(targetShip);
     }; 
+    // regardless of shot type, update AI object: 
     playerTwoAiObj.forEach(function(ship) {
         if (ship.knownHits.length > 1) ship.determineDirection(); 
-    });
+    }); 
 };
 
 // shot at same ship until it sinks
 function playerTwoAiShot(targetShip) {
-    console.log("shoot at player One's", targetShip.type);
-    console.log("last hit: ", targetShip.knownHits);
-    console.log(`next hit is one space up: row(${targetShip.knownHits[0].row - 1}) col(${targetShip.knownHits[0].col})`);
-    console.log(`current value of next hit space: ${playerOneShipLayout[targetShip.knownHits[0].row - 1][targetShip.knownHits[0].col]}`);
-    const shotArr = [targetShip.knownHits[0].row - 1, targetShip.knownHits[0].col]
-    // playerTwoSpecificShot(shotArr);     /// this might be redundant 
+    // console.log("shoot at player One's", targetShip.type);
+    // console.log("last hit: ", targetShip.knownHits);
+    // console.log(`next hit is one space up: row(${targetShip.knownHits[0].row - 1}) col(${targetShip.knownHits[0].col})`);
+    // console.log(`current value of next hit space: ${playerOneShipLayout[targetShip.knownHits[0].row - 1][targetShip.knownHits[0].col]}`);
+    // const shotArr = [targetShip.knownHits[0].row - 1, targetShip.knownHits[0].col]
     // playerTwoRandomShot();      // this verifies flow control 
+
+    const shotArr = targetShip.determineNextShot(); 
+    playerTwoSpecificShot(shotArr);
 };
 
 // playerTwo random shot (if AI is not engaged)
@@ -424,17 +451,18 @@ function playerTwoRandomShot() {
 
 function playerTwoSpecificShot(shotArr) {
     let shotPlacement = playerOneShipLayout[shotArr[0]][shotArr[1]];
-    // if (typeof shotPlacement === "string") {
-    //     registerHit(-1, shotArr);
-    //     playerOneShipLayout[shotArr[0]][shotArr[1]] = 1;
-    // };
-    // if (shotPlacement === null) playerOneShipLayout[shotArr[0]][shotArr[1]] = -1;
-    // if (shotPlacement === 1 || shotPlacement === -1) {
-    //     turnBs = -1; 
-    //     playerTwoRandomShot(); 
-    // } else {
-    //     turnBs *= -1;
-    //     renderBs(playerOneShipLayout, playerTwoShipLayout);
-    // };
+    if (typeof shotPlacement === "string") {
+        registerHit(-1, shotArr);
+        playerOneShipLayout[shotArr[0]][shotArr[1]] = 1;
+    };
+    if (shotPlacement === null) playerOneShipLayout[shotArr[0]][shotArr[1]] = -1;
+    if (shotPlacement === 1 || shotPlacement === -1) {
+        turnBs = -1; 
+        // playerTwoRandomShot(); 
+        playerTwoShot(); 
+    } else {
+        turnBs *= -1;
+        renderBs(playerOneShipLayout, playerTwoShipLayout);
+    };
 };
 
