@@ -49,9 +49,7 @@ class Ship {
         this.boardLocation = [];
     } 
     checkIfAlive() {
-        if (this.hitSpaces === this.length) {
-            this.alive = false; 
-        }
+        if (this.hitSpaces === this.length) this.alive = false; 
     }
 };
 class aiShip extends Ship {
@@ -406,6 +404,7 @@ function updatePlayerTwoIntel(hitOrMiss, shotArr) {
                 ship.knownHits.push(newCoord);
             };
             ship.findRestOfShip(); 
+            ship.checkIfAlive(); 
         });
     };
     if (hitOrMiss === -1) {
@@ -415,6 +414,7 @@ function updatePlayerTwoIntel(hitOrMiss, shotArr) {
 
 // handle shot based on AI status 
 function playerTwoShot() {
+    engageAi = false; 
     let targetShip = null; 
     playerTwoAiObj.find(function(ship) {
         if (ship.positionKnown === true && ship.alive === true) {
