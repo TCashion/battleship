@@ -1,4 +1,17 @@
-#### Battleship
+# Battleship
+
+## Getting Started
+
+Open up the game in your browser, click the "Reset" button, and fire away! 
+
+## Technologies Used 
+
+* HTML
+* CSS
+* JS (vanilla)
+
+## Next Steps
+
 
 
 Wireframe:
