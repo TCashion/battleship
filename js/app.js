@@ -9,7 +9,7 @@ const boardColors = {
     "-1": "var(--main-plus-two)",
     "1": "orange",
     "shipColor": "var(--main-minus-one)",
-    shipFinder: function(cellValue) {
+    renderShipColors: function(cellValue) {
         if (typeof cellValue === "string") {
             return this.shipColor;
         } else {
@@ -181,7 +181,7 @@ function matchArraysToDom(shipLayout) {
 function generateBoardColors(shipLayout, rowIdx, colIdx) {
     // rowIdx and colIdx transposed on these two so that board matches array
     let shipLayoutPositionValue = shipLayout[rowIdx][colIdx];
-    const divElColor = boardColors.shipFinder(shipLayoutPositionValue);
+    const divElColor = boardColors.renderShipColors(shipLayoutPositionValue);
     const radarDivEl = document.getElementById(`x${colIdx}y${rowIdx}`); 
     const displayDivEl = document.getElementById(`X${colIdx}Y${rowIdx}`);
     if (shipLayout === playerOneShipLayout) {
@@ -496,9 +496,6 @@ function playerTwoSpecificShot(shotArr, targetShip) {
         playerOneShipLayout[shotArr[0]][shotArr[1]] = -1;
         addKnownMiss(shotArr, targetShip);
         turnBs *= -1;
-    } else if (shotPlacement === -1 || shotPlacement === 1) {
-        turnBs = -1; 
-        playerTwoRandomShot(); 
     } else {
         turnBs *= -1; 
     };
@@ -511,4 +508,4 @@ function addKnownMiss(shotArr, targetShip) {
         col: shotArr[1]
     };
     targetShip.knownMisses.push(newCoord);
-}
+}; 
