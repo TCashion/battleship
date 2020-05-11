@@ -131,6 +131,7 @@ targetDisplayEl.addEventListener("click", function(e) {
 
 function initBs() {
     turnBs = 1; 
+    winnerBs = null; 
     engageAi = false; 
     playerOneRadarDivEls.forEach(div => div.innerText = "");
     playerOneDisplayDivEls.forEach(div => div.innerText = "");
@@ -332,30 +333,14 @@ function renderWinner (winnerBs) {
     let winnerId;
     if (winnerBs === 1) winnerId = "1";
     if (winnerBs === -1) winnerId = "2";
-    playerOneDisplayDivEls[14].innerText = "P";
-    playerOneDisplayDivEls[14].setAttribute("style", "color: black; background-color: var(--main-minus-two)")
-    playerOneDisplayDivEls[24].innerText = "L";
-    playerOneDisplayDivEls[24].setAttribute("style", "color: black; background-color: var(--main-minus-two)")
-    playerOneDisplayDivEls[34].innerText = "A";
-    playerOneDisplayDivEls[34].setAttribute("style", "color: black; background-color: var(--main-minus-two)")
-    playerOneDisplayDivEls[44].innerText = "Y";
-    playerOneDisplayDivEls[44].setAttribute("style", "color: black; background-color: var(--main-minus-two)")
-    playerOneDisplayDivEls[54].innerText = "E";
-    playerOneDisplayDivEls[54].setAttribute("style", "color: black; background-color: var(--main-minus-two)")
-    playerOneDisplayDivEls[64].innerText = "R";
-    playerOneDisplayDivEls[64].setAttribute("style", "color: black; background-color: var(--main-minus-two)")
-    playerOneDisplayDivEls[74].innerText = " ";
-    playerOneDisplayDivEls[74].setAttribute("style", "color: black; background-color: var(--main-minus-two)")
-    playerOneDisplayDivEls[84].innerText = winnerId;
-    playerOneDisplayDivEls[84].setAttribute("style", "color: black; background-color: var(--main-minus-two)")
-    playerOneDisplayDivEls[35].innerText = "W";
-    playerOneDisplayDivEls[35].setAttribute("style", "color: black; background-color: var(--main-minus-two)")
-    playerOneDisplayDivEls[45].innerText = "I";
-    playerOneDisplayDivEls[45].setAttribute("style", "color: black; background-color: var(--main-minus-two)")
-    playerOneDisplayDivEls[55].innerText = "N";
-    playerOneDisplayDivEls[55].setAttribute("style", "color: black; background-color: var(--main-minus-two)")
-    playerOneDisplayDivEls[65].innerText = "S";
-    playerOneDisplayDivEls[65].setAttribute("style", "color: black; background-color: var(--main-minus-two)")
+    let bannerRowPositions = [14, 24, 34, 44, 54, 64, 74, 84, 35, 45, 55, 65];
+    let banner = ["P", "L", "A", "Y", "E", "R", " ", winnerId, "W", "I", "N", "S"];
+    bannerRowPositions.forEach(function(position, idx) {
+        playerOneDisplayDivEls[position].setAttribute("style", "color: black; background-color: var(--main-minus-two)");
+        playerOneRadarDivEls[position].setAttribute("style", "color: black; background-color: var(--main-minus-two)");
+        playerOneDisplayDivEls[position].innerText = banner[idx];
+        playerOneRadarDivEls[position].innerText = banner[idx];
+    });
 };
 
 // change destroyed ship colors to red
