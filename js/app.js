@@ -426,7 +426,7 @@ function playerTwoAiShot(targetShip) {
     // playerTwoRandomShot();      // this verifies flow control 
 
     const shotArr = targetShip.determineNextShot(); 
-    playerTwoSpecificShot(shotArr);
+    playerTwoSpecificShot(shotArr, targetShip);
 };
 
 // playerTwo random shot (if AI is not engaged)
@@ -449,13 +449,20 @@ function playerTwoRandomShot() {
     };
 };
 
-function playerTwoSpecificShot(shotArr) {
+function playerTwoSpecificShot(shotArr, targetShip) {
     let shotPlacement = playerOneShipLayout[shotArr[0]][shotArr[1]];
     if (typeof shotPlacement === "string") {
         registerHit(-1, shotArr);
         playerOneShipLayout[shotArr[0]][shotArr[1]] = 1;
     };
-    if (shotPlacement === null) playerOneShipLayout[shotArr[0]][shotArr[1]] = -1;
+    if (shotPlacement === null) {
+        playerOneShipLayout[shotArr[0]][shotArr[1]] = -1;
+        const newCoord = {
+            row: shotArr[0],
+            col: shotArr[1]
+        };
+        targetShip.knownMisses.push(newCoord);
+    }
     if (shotPlacement === 1 || shotPlacement === -1) {
         turnBs = -1; 
         // playerTwoRandomShot(); 
