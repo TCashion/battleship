@@ -85,9 +85,12 @@ class aiShip extends Ship {
                 };
             } else if (this.knownHits.length === 1 && this.knownMisses.length === 1) {
                 // case: when shot above is a miss
-                shotArr = [this.knownHits[0].row + 1, this.knownHits[0].col];
-            } else if ((this.knownHits.length === 2 && this.knownMisses.length === 1) 
-                || (this.knownHits.length === 1 && this.knownMisses.length === 2)) {
+                if (this.knownHits[0].row + 1 >= 9) {
+                    shotArr = [this.knownHits[0].row, this.knownHits[0].col - 1];
+                } else {
+                    shotArr = [this.knownHits[0].row + 1, this.knownHits[0].col];
+                };
+            } else if ((this.knownHits.length + this.knownMisses.length >= 3)) {
                 // case: when there are 2 hits and 1 miss, or vice versa, final shot is to the right
                 shotArr = [this.knownHits[0].row, this.knownHits[0].col + 1];
             };
@@ -456,7 +459,7 @@ function playerTwoShot() {
     });
     if (engageAi === false) {
         playerTwoRandomShot();
-    } else {
+    } else if (engageAi === true) {
         playerTwoAiShot(targetShip);
     }; 
     // regardless of shot type, update AI object: 
