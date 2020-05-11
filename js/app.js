@@ -323,10 +323,40 @@ function checkWinnerBs() {
     } else if (!playerTwoShips.find(function(ship) {return ship.alive === true;})) {
         winnerBs = 1;
         turnBs = null; 
-    } else {
-        console.log("no winner yet")
     };
-}
+    if (winnerBs) renderWinner(winnerBs);
+};
+
+// update DOM to show winner
+function renderWinner (winnerBs) {
+    let winnerId;
+    if (winnerBs === 1) winnerId = "1";
+    if (winnerBs === -1) winnerId = "2";
+    playerOneDisplayDivEls[14].innerText = "P";
+    playerOneDisplayDivEls[14].setAttribute("style", "color: black; background-color: var(--main-minus-two)")
+    playerOneDisplayDivEls[24].innerText = "L";
+    playerOneDisplayDivEls[24].setAttribute("style", "color: black; background-color: var(--main-minus-two)")
+    playerOneDisplayDivEls[34].innerText = "A";
+    playerOneDisplayDivEls[34].setAttribute("style", "color: black; background-color: var(--main-minus-two)")
+    playerOneDisplayDivEls[44].innerText = "Y";
+    playerOneDisplayDivEls[44].setAttribute("style", "color: black; background-color: var(--main-minus-two)")
+    playerOneDisplayDivEls[54].innerText = "E";
+    playerOneDisplayDivEls[54].setAttribute("style", "color: black; background-color: var(--main-minus-two)")
+    playerOneDisplayDivEls[64].innerText = "R";
+    playerOneDisplayDivEls[64].setAttribute("style", "color: black; background-color: var(--main-minus-two)")
+    playerOneDisplayDivEls[74].innerText = " ";
+    playerOneDisplayDivEls[74].setAttribute("style", "color: black; background-color: var(--main-minus-two)")
+    playerOneDisplayDivEls[84].innerText = winnerId;
+    playerOneDisplayDivEls[84].setAttribute("style", "color: black; background-color: var(--main-minus-two)")
+    playerOneDisplayDivEls[35].innerText = "W";
+    playerOneDisplayDivEls[35].setAttribute("style", "color: black; background-color: var(--main-minus-two)")
+    playerOneDisplayDivEls[45].innerText = "I";
+    playerOneDisplayDivEls[45].setAttribute("style", "color: black; background-color: var(--main-minus-two)")
+    playerOneDisplayDivEls[55].innerText = "N";
+    playerOneDisplayDivEls[55].setAttribute("style", "color: black; background-color: var(--main-minus-two)")
+    playerOneDisplayDivEls[65].innerText = "S";
+    playerOneDisplayDivEls[65].setAttribute("style", "color: black; background-color: var(--main-minus-two)")
+};
 
 // change destroyed ship colors to red
 function renderDestroyed(playerXShips) {
@@ -345,6 +375,8 @@ function renderDestroyed(playerXShips) {
         };
     });
 };
+
+
 
 // translate shot from user input into data coordinates
 function translateShot(shot) {
