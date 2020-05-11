@@ -1,8 +1,10 @@
 # Battleship
 
+My version of Battleship is a web-based version of the popular children's board game. In this web-based game, play against your computer to try to find and sink your opponents' ships before the computer sinks all of yours! 
+
 ## Getting Started
 
-Open up the game in your browser, click the "Reset" button, and fire away! 
+Open up the game in your browser, click the "Reset" button, enter your first shot coordinates into the target panel, and fire away! 
 
 ## Technologies Used 
 
