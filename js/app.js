@@ -456,9 +456,6 @@ function updatePlayerTwoIntel(hitOrMiss, shotArr) {
             ship.checkIfAlive(); 
         });
     };
-    if (hitOrMiss === -1) {
-
-    };
 };
 
 // handle shot based on AI status 
