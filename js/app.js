@@ -61,6 +61,7 @@ class aiShip extends Ship {
         this.positionKnown = false; 
         this.hitSpaces = 0; 
         this.alive = true; 
+        this.boardLocation = [];
         this.knownHits = []; 
         this.knownMisses = []; 
     }
@@ -71,20 +72,55 @@ class aiShip extends Ship {
         if (this.knownHits[0].col === this.knownHits[1].col) {
             this.direction = "vertical";
         };
+        
     };
     determineNextShot() {
         let shotArr; 
         if (this.knownHits.length === 1) {
-            // console.log("next shot is ", [this.knownHits[0].row - 1, this.knownHits[0].col])
             shotArr = [this.knownHits[0].row - 1, this.knownHits[0].col];
         };
         if (this.knownHits.length === 2) {
             if (this.direction === "vertical") {
-                // console.log("next shot is ", [this.knownHits[0].row - 2, this.knownHits[0].col])
-                shotArr [this.knownHits[0].row - 2, this.knownHits[0].col]
+                let rowIdx = this.knownHits[0].row - 2;
+                let colIdx = this.knownHits[0].col
+                if (playerOneShipLayout[rowIdx][colIdx] === 1 || playerOneShipLayout[rowIdx][colIdx] === -1) {
+                    console.log("already taken")
+                } else {
+                    shotArr = [rowIdx, colIdx];
+                }
             };
         };
         return shotArr; 
+    };
+    findCap() {
+        if (this.knownHits.length >= 2 && this.knownMisses.length >= 1) {
+            if (this.direction === "vertical") {
+                let remainingLength = this.length - this.knownHits.length;
+                console.log(remainingLength); // from here, parse out ship until remaining length is known
+                this.findRestOfShip(remainingLength);
+            } else if (this.direction === "vertical") {
+                let remainingLength = this.length - this.knownHits.length;
+                this.findRestOfShip(remainingLength);
+            };
+        };
+    };
+    findRestOfShip(remainingLength) { 
+        // this.knownHits.forEach(function(hit) {
+        //     hit.hit = true; 
+        //     this.boardLocation.push(hit);
+        // });
+        if (this.direction === "vertical") {
+            if (playerTwoAiObj[0].knownHits.length >= 2 && playerTwoAiObj[0].knownMisses.length >= 1) {
+                if (playerTwoAiObj[0].direction === "vertical") {
+                    let remainingLength = playerTwoAiObj[0].length - playerTwoAiObj[0].knownHits.length;
+                    for (let i = 0; i < remainingLength; i++) {
+                        console.log(playerTwoAiObj[0].boardLocation);
+                    }; 
+                };
+            };
+        } else if (this.direction === "horizontal") {
+
+        };
     };
 };
 
@@ -392,12 +428,6 @@ function updatePlayerTwoIntel(hitOrMiss, shotArr) {
 // handle shot based on AI status 
 function playerTwoShot() {
     let targetShip = null; 
-    // playerTwoAiObj.forEach(function(ship) {
-    //     if (ship.positionKnown === true && ship.alive === true) {
-    //         engageAi = true; 
-    //         playerTwoAiShot(ship);
-    //     };
-    // }); // switch out for below, which returns the first match 
     playerTwoAiObj.find(function(ship) {
         if (ship.positionKnown === true && ship.alive === true) {
             engageAi = true; 
@@ -418,13 +448,6 @@ function playerTwoShot() {
 
 // shot at same ship until it sinks
 function playerTwoAiShot(targetShip) {
-    // console.log("shoot at player One's", targetShip.type);
-    // console.log("last hit: ", targetShip.knownHits);
-    // console.log(`next hit is one space up: row(${targetShip.knownHits[0].row - 1}) col(${targetShip.knownHits[0].col})`);
-    // console.log(`current value of next hit space: ${playerOneShipLayout[targetShip.knownHits[0].row - 1][targetShip.knownHits[0].col]}`);
-    // const shotArr = [targetShip.knownHits[0].row - 1, targetShip.knownHits[0].col]
-    // playerTwoRandomShot();      // this verifies flow control 
-
     const shotArr = targetShip.determineNextShot(); 
     playerTwoSpecificShot(shotArr, targetShip);
 };
@@ -453,23 +476,27 @@ function playerTwoSpecificShot(shotArr, targetShip) {
     let shotPlacement = playerOneShipLayout[shotArr[0]][shotArr[1]];
     if (typeof shotPlacement === "string") {
         registerHit(-1, shotArr);
+        if (shotPlacement !== targetShip.identifier) addKnownMiss(shotArr, targetShip);
         playerOneShipLayout[shotArr[0]][shotArr[1]] = 1;
-    };
-    if (shotPlacement === null) {
+        turnBs *= -1;
+    } else if (shotPlacement === null) {
         playerOneShipLayout[shotArr[0]][shotArr[1]] = -1;
-        const newCoord = {
-            row: shotArr[0],
-            col: shotArr[1]
-        };
-        targetShip.knownMisses.push(newCoord);
-    }
-    if (shotPlacement === 1 || shotPlacement === -1) {
+        addKnownMiss(shotArr, targetShip)
+    } else if (shotPlacement === 1 || shotPlacement === -1) {
         turnBs = -1; 
-        // playerTwoRandomShot(); 
-        playerTwoShot(); 
+        addKnownMiss(shotArr, targetShip); 
+        console.log("already taken")
+        // playerTwoShot(); 
     } else {
         turnBs *= -1;
-        renderBs(playerOneShipLayout, playerTwoShipLayout);
     };
+    renderBs(playerOneShipLayout, playerTwoShipLayout);
 };
 
+function addKnownMiss(shotArr, targetShip) {
+    const newCoord = {
+        row: shotArr[0],
+        col: shotArr[1]
+    };
+    targetShip.knownMisses.push(newCoord);
+}
