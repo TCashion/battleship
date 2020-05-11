@@ -75,6 +75,21 @@ class aiShip extends Ship {
     determineNextShot() {
         let shotArr; 
         if (this.boardLocation.length === 0) {
+            if (this.identifier === "D") {
+                if (typeof playerOneShipLayout[this.knownHits[0].row - 1][this.knownHits[0].col] !== "number") {
+                    shotArr = [this.knownHits[0].row - 1, this.knownHits[0].col];
+                    return shotArr; 
+                } else if (typeof playerOneShipLayout[this.knownHits[0].row][this.knownHits[0].col + 1] !== "number") {
+                    shotArr = [this.knownHits[0].row, this.knownHits[0].col + 1];
+                    return shotArr; 
+                } else if (typeof playerOneShipLayout[this.knownHits[0].row + 1][this.knownHits[0].col] !== "number") {
+                    shotArr = [this.knownHits[0].row + 1, this.knownHits[0].col];
+                    return shotArr; 
+                } else if (typeof playerOneShipLayout[this.knownHits[0].row][this.knownHits[0].col - 1] !== "number") {
+                    shotArr = [this.knownHits[0].row, this.knownHits[0].col - 1];
+                    return shotArr; 
+                }
+            }
             if (this.knownHits.length === 1 && this.knownMisses.length === 0) {
                 // case: after first hit
                 if (typeof playerOneShipLayout[this.knownHits[0].row - 1, this.knownHits[0]] === "number" 
