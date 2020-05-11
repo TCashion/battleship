@@ -76,28 +76,34 @@ class aiShip extends Ship {
     };
     determineNextShot() {
         let shotArr; 
-        if (this.knownHits.length === 1 && this.knownMisses.length === 0) {
-            // case: after first hit
-            if (typeof playerOneShipLayout[this.knownHits[0].row - 1, this.knownHits[0]] === "number") {
+        if (this.boardLocation.length === 0) {
+            if (this.knownHits.length === 1 && this.knownMisses.length === 0) {
+                // case: after first hit
+                if (typeof playerOneShipLayout[this.knownHits[0].row - 1, this.knownHits[0]] === "number" 
+                || (this.knownHits[0].row - 1) < 0) {
+                    shotArr = [this.knownHits[0].row, this.knownHits[0].col + 1];
+                } else {
+                    shotArr = [this.knownHits[0].row - 1, this.knownHits[0].col];
+                };
+            } else if (this.knownHits.length === 1 && this.knownMisses.length === 1) {
+                // case: when shot above is a miss
+                shotArr = [this.knownHits[0].row + 1, this.knownHits[0].col];
+            } else if ((this.knownHits.length === 2 && this.knownMisses.length === 1) 
+                || (this.knownHits.length === 1 && this.knownMisses.length === 2)) {
+                // case: when there are 2 hits and 1 miss, or vice versa, final shot is to the right
                 shotArr = [this.knownHits[0].row, this.knownHits[0].col + 1];
-            } else {
-                shotArr = [this.knownHits[0].row - 1, this.knownHits[0].col];
             };
-        } else if (this.knownHits.length === 1 && this.knownMisses.length === 1) {
-            // case: when shot above is a miss
-            shotArr = [this.knownHits[0].row + 1, this.knownHits[0].col];
-        } else if ((this.knownHits.length === 2 && this.knownMisses.length === 1) 
-            || (this.knownHits.length === 1 && this.knownMisses.length === 2)) {
-            // case: when there are 2 hits and 1 miss, or vice versa, final shot is to the right
-            shotArr = [this.knownHits[0].row, this.knownHits[0].col + 1];
-            console.log("player two knows the location of ", this);
-        };
-        // next: return the first board location value that is false, and that is the shotArr
+        } else if (this.boardLocation.length > 0) {
+            // return the first board location value that is false, and that is the shotArr
+            const rowIdx = this.boardLocation.find(function (coordinate) {return coordinate.hit === false;}).row;
+            const colIdx = this.boardLocation.find(function (coordinate) {return coordinate.hit === false;}).col;
+            shotArr = [rowIdx, colIdx];
+        }
         return shotArr; 
     };
     findRestOfShip() { 
         const currentShip = this; 
-        if (currentShip.knownHits.length >= 2 || (currentShip.knownHits.length >= 1 && currentShip.knownMisses.length >= 1)) {
+        if (currentShip.knownHits.length >= 2 || currentShip.knownMisses.length >= 2) {
             currentShip.boardLocation = (playerOneShips.find(function(ship) {
                 return (ship.identifier === currentShip.identifier); 
             })).boardLocation;
@@ -465,9 +471,12 @@ function playerTwoSpecificShot(shotArr, targetShip) {
         playerOneShipLayout[shotArr[0]][shotArr[1]] = -1;
         addKnownMiss(shotArr, targetShip);
         turnBs *= -1;
+    } else if (shotPlacement === -1 || shotPlacement === 1) {
+        turnBs = -1; 
+        playerTwoRandomShot(); 
     } else {
         turnBs *= -1; 
-    }
+    };
     renderBs(playerOneShipLayout, playerTwoShipLayout);
 };
 
