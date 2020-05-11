@@ -77,56 +77,32 @@ class aiShip extends Ship {
     determineNextShot() {
         let shotArr; 
         if (this.knownHits.length === 1 && this.knownMisses.length === 0) {
+            // case: after first hit
             if (typeof playerOneShipLayout[this.knownHits[0].row - 1, this.knownHits[0]] === "number") {
                 shotArr = [this.knownHits[0].row, this.knownHits[0].col + 1];
             } else {
                 shotArr = [this.knownHits[0].row - 1, this.knownHits[0].col];
             };
-        } else if (this.knownHits.length === 1 && this.knownMisses.length >= 1) {
+        } else if (this.knownHits.length === 1 && this.knownMisses.length === 1) {
+            // case: when shot above is a miss
+            shotArr = [this.knownHits[0].row + 1, this.knownHits[0].col];
+        } else if ((this.knownHits.length === 2 && this.knownMisses.length === 1) 
+            || (this.knownHits.length === 1 && this.knownMisses.length === 2)) {
+            // case: when there are 2 hits and 1 miss, or vice versa, final shot is to the right
             shotArr = [this.knownHits[0].row, this.knownHits[0].col + 1];
-        } else if (this.knownHits.length === 2) {
-            if (this.direction === "vertical") {
-                let rowIdx = this.knownHits[0].row - 2;
-                let colIdx = this.knownHits[0].col
-                if (playerOneShipLayout[rowIdx][colIdx] === 1 || playerOneShipLayout[rowIdx][colIdx] === -1) {
-                    console.log("already taken")
-                } else {
-                    shotArr = [rowIdx, colIdx];
-                }
-            };
+            console.log("player two knows the location of ", this);
         };
+        // next: return the first board location value that is false, and that is the shotArr
         return shotArr; 
     };
-    findCap() {
-        if (this.knownHits.length >= 2 && this.knownMisses.length >= 1) {
-            if (this.direction === "vertical") {
-                let remainingLength = this.length - this.knownHits.length;
-                console.log(remainingLength); // from here, parse out ship until remaining length is known
-                this.findRestOfShip(remainingLength);
-            } else if (this.direction === "vertical") {
-                let remainingLength = this.length - this.knownHits.length;
-                this.findRestOfShip(remainingLength);
-            };
+    findRestOfShip() { 
+        const currentShip = this; 
+        if (currentShip.knownHits.length >= 2 || (currentShip.knownHits.length >= 1 && currentShip.knownMisses.length >= 1)) {
+            currentShip.boardLocation = (playerOneShips.find(function(ship) {
+                return (ship.identifier === currentShip.identifier); 
+            })).boardLocation;
         };
     };
-    // findRestOfShip(remainingLength) { 
-    //     // this.knownHits.forEach(function(hit) {
-    //     //     hit.hit = true; 
-    //     //     this.boardLocation.push(hit);
-    //     // });
-    //     if (this.direction === "vertical") {
-    //         if (playerTwoAiObj[0].knownHits.length >= 2 && playerTwoAiObj[0].knownMisses.length >= 1) {
-    //             if (playerTwoAiObj[0].direction === "vertical") {
-    //                 let remainingLength = playerTwoAiObj[0].length - playerTwoAiObj[0].knownHits.length;
-    //                 for (let i = 0; i < remainingLength; i++) {
-    //                     console.log(playerTwoAiObj[0].boardLocation);
-    //                 }; 
-    //             };
-    //         };
-    //     } else if (this.direction === "horizontal") {
-
-    //     };
-    // };
 };
 
 /*----- event listeners -----*/
@@ -423,6 +399,7 @@ function updatePlayerTwoIntel(hitOrMiss, shotArr) {
                 };
                 ship.knownHits.push(newCoord);
             };
+            ship.findRestOfShip(); 
         });
     };
     if (hitOrMiss === -1) {
