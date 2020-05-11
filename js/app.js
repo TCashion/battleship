@@ -149,6 +149,7 @@ function renderBs(playerOneShipLayout, playerTwoShipLayout) {
     matchArraysToDom(playerTwoShipLayout);
     renderDestroyed(playerOneShips);
     renderDestroyed(playerTwoShips);
+    checkWinnerBs(); 
 };
 
 function defineBoard(playerXShipLayout) {
@@ -313,6 +314,19 @@ function updateShipObjects(player) {
         });
     });
 };
+
+// check for a winner, each round
+function checkWinnerBs() {
+    if(!playerOneShips.find(function(ship) {return ship.alive === true;})) {
+        winnerBs = -1;
+        turnBs = null; 
+    } else if (!playerTwoShips.find(function(ship) {return ship.alive === true;})) {
+        winnerBs = 1;
+        turnBs = null; 
+    } else {
+        console.log("no winner yet")
+    };
+}
 
 // change destroyed ship colors to red
 function renderDestroyed(playerXShips) {
