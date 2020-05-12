@@ -535,6 +535,12 @@ Gameboard Styles
     font-family: 'Stardos Stencil', cursive;
     font-weight: 300;
     font-size: 1.6rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.battleship-row {
+    display: flex; 
 }
 
 .battleship-monitor {
@@ -556,8 +562,8 @@ Gameboard Styles
 
 .battleship-panel {
     text-align: center;
-    padding: 25%;
     font-size: 0.8rem;
+    padding-top: 20%;
 }
 
 .battleship-label {
@@ -566,7 +572,7 @@ Gameboard Styles
     background-color: transparent;
 }
 
-.battleship-monitor, .battleship-target-display {
+.battleship-monitor, .battleship-target-display, .battleship-monitor-label {
     background-color: var(--main-minus-two);
     height: 50vw; 
     width: 50vw; 
@@ -575,8 +581,20 @@ Gameboard Styles
     padding: 5px; 
 }
 
+.battleship-monitor-label {
+    height: auto;
+    width: 15vw;
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+}
+
+.battleship-monitor-label > h2 {
+    font-size: 1.4rem; 
+}
+
 .battleship-target-display {
     height: auto;
+    width: 75vw;
     padding: 10px; 
 }
 
@@ -728,11 +746,18 @@ Media Queries
     .battleship-monitor {
         max-width: 650px;
         max-height: 650px;
+    }
+
+    .battleship-row:first-of-type {
+        grid-area: radar;
+    }
+
+    .battleship-row:nth-of-type(2) {
         grid-area: display;
     }
 
-    .battleship-monitor:first-of-type {
-        grid-area: radar;
+    .battleship-row:last-of-type {
+        grid-area: target;
     }
 
     .battleship-panel, .battleship-label {
