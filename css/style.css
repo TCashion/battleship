@@ -793,6 +793,14 @@ Media Queries
         height: 35px;
         width: 35px;
     }
+
+    .battleship-target-display {
+        width: 590px;
+    }
+
+    .battleship-target-display > form {
+        width: 100%;
+    }
 }
 
 /* for desktop screens */
@@ -800,7 +808,7 @@ Media Queries
 
     #battleship-board {
         display: grid;
-        grid-template-columns: 5fr 1fr;
+        grid-template-columns: 5fr 2fr;
         grid-template-rows: 1fr 1fr;
         grid-template-areas: 
         " radar . "
@@ -836,4 +844,9 @@ Media Queries
         height: 50px;
         width: 50px;
     }
+
+    .battleship-target-display {
+        width: 100%;
+    }
+
 }

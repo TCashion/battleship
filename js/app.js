@@ -122,6 +122,9 @@ targetDisplayEl.addEventListener("click", function(e) {
             const shot = targetInput.value; 
             targetInput.value = ""; 
             playerOneShot(translateShot(shot));
+        } else if (!turnBs) {
+            targetInputLabel.innerText = "Press the 'Reset' button to start the game!";
+            targetInputLabel.style.display = "block";
         } else {
             targetInputLabel.innerText = "Not a valid shot";
             targetInputLabel.style.display = "block";
@@ -148,6 +151,7 @@ function initBs() {
 }
 
 function renderBs(playerOneShipLayout, playerTwoShipLayout) {
+    targetInputLabel.style.display = "none";
     matchArraysToDom(playerOneShipLayout);
     matchArraysToDom(playerTwoShipLayout);
     renderDestroyed(playerOneShips);
