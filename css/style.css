@@ -579,13 +579,32 @@ Gameboard Styles
     background-color: transparent;
 }
 
-.battleship-monitor, .battleship-target-display, .battleship-monitor-label {
+.battleship-monitor, .battleship-target-display, .battleship-monitor-label, .battleship-status-display {
     background-color: var(--main-minus-two);
     height: 60vw; 
     width: 60vw; 
     margin: 0 auto 10px auto; 
     border-radius: 5px;
     padding: 5px; 
+}
+
+.battleship-status-display {
+    display: flex;   
+    flex-direction: column; 
+}
+
+.battleship-status-display h4 {
+    display: inline-block;
+}
+
+.ship-status-indicator {
+    background-color: var(--main-plus-two);
+    height: 5px;
+    width: 5px;
+    border-radius: 50%;
+    display: inline-block;
+    float: right; 
+    margin: 2px; 
 }
 
 .battleship-monitor-label {
@@ -603,7 +622,7 @@ Gameboard Styles
     margin: 0;
 }
 
-.battleship-target-display {
+.battleship-target-display, .battleship-status-display {
     height: auto;
     width: 78vw;
     padding: 10px; 
@@ -765,8 +784,8 @@ Media Queries
 
     .battleship-target-display {
         grid-area: target;
-        width: auto; 
         max-height: 250px;
+        min-width: 250px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -798,12 +817,13 @@ Media Queries
         width: 35px;
     }
 
-    .battleship-target-display {
-        width: 590px;
-    }
-
     .battleship-target-display > form {
         width: 100%;
+    }
+
+    .battleship-status-display h4 {
+        font-size: 2rem;
+        line-height: 1.2;
     }
 }
 
@@ -811,12 +831,13 @@ Media Queries
 @media (min-width: 1024px) {
 
     #battleship-board {
+        margin: 15px auto;
         display: grid;
         grid-template-columns: 5fr 2fr;
         grid-template-rows: 1fr 1fr;
         grid-template-areas: 
-        " radar . "
-        " display target ";
+        " radar target "
+        " display status ";
     }
 
     .battleship-monitor, .battleship-monitor-label {
@@ -840,8 +861,12 @@ Media Queries
         grid-area: display;
     }
 
-    .battleship-row:last-of-type {
+    .battleship-row:nth-of-type(3) {
         grid-area: target;
+    }
+
+    .battleship-row:last-of-type {
+        grid-area: status;
     }
 
     .battleship-panel, .battleship-label {
@@ -849,8 +874,22 @@ Media Queries
         width: 50px;
     }
 
-    .battleship-target-display {
+    .battleship-target-display, .battleship-status-display {
         width: 100%;
+        height: auto;
+        margin: auto;
+        margin-left: 15px;
+    }
+
+    .battleship-status-display h4 {
+        font-size: 2rem;
+        line-height: 1.5;
+    }
+
+    .ship-status-indicator {
+        height: 6px;
+        width: 6px;
+        margin: 10px 2px;
     }
 
 }
