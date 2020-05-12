@@ -558,6 +558,9 @@ Gameboard Styles
     background-color: var(--main-plus-two);
     border-radius: 5px;
     margin: 1px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .battleship-panel {
@@ -586,10 +589,14 @@ Gameboard Styles
     width: 15vw;
     writing-mode: vertical-lr;
     text-orientation: upright;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .battleship-monitor-label > h2 {
-    font-size: 2rem; 
+    font-size: 5vw; 
+    margin: 0;
 }
 
 .battleship-target-display {
@@ -731,56 +738,24 @@ Media Queries
     }
 }
 
-/* battleship done from mobile-frist design */
+/* for medium screens */
 @media (min-width: 768px) {
 
-    #battleship-board {
-        display: grid;
-        grid-template-columns: 5fr 1fr;
-        grid-template-rows: 1fr 1fr;
-        grid-template-areas: 
-        " radar . "
-        " display target ";
-    }
-
     .battleship-monitor {
-        max-width: 650px;
-        max-height: 650px;
-    }
-
-    .battleship-row:first-of-type {
-        grid-area: radar;
-    }
-
-    .battleship-row:nth-of-type(2) {
-        grid-area: display;
-    }
-
-    .battleship-row:last-of-type {
-        grid-area: target;
-    }
-
-    .battleship-panel, .battleship-label {
-        height: 4vw;
-        width: 4vw;
-        max-width: 55px;
-        max-height: 55px;
+        height: 450px;
+        width: 450px;
     }
 
     .battleship-monitor-label {
         width: 10vw;
         margin-right: 5px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
     }
 
     .battleship-monitor-label > h2 {
-        font-size: 6rem;
+        font-size: 4rem;
     }
 
     .battleship-label {
-        padding: 1vw;
         font-size: 1.8rem;
     }
 
@@ -812,5 +787,53 @@ Media Queries
         text-align: center;
         padding: 25%;
         font-size: 1.6rem;
+    }
+
+    .battleship-panel, .battleship-label {
+        height: 35px;
+        width: 35px;
+    }
+}
+
+/* for desktop screens */
+@media (min-width: 1024px) {
+
+    #battleship-board {
+        display: grid;
+        grid-template-columns: 5fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-template-areas: 
+        " radar . "
+        " display target ";
+    }
+
+    .battleship-monitor, .battleship-monitor-label {
+        height: 600px;
+        width: 600px;
+    }
+
+    .battleship-monitor-label {
+        width: 100px;
+    }
+
+    .battleship-monitor-label > h2 {
+        font-size: 5.5rem;
+    }
+
+    .battleship-row:first-of-type {
+        grid-area: radar;
+    }
+
+    .battleship-row:nth-of-type(2) {
+        grid-area: display;
+    }
+
+    .battleship-row:last-of-type {
+        grid-area: target;
+    }
+
+    .battleship-panel, .battleship-label {
+        height: 50px;
+        width: 50px;
     }
 }
