@@ -553,8 +553,8 @@ Gameboard Styles
 }
 
 .battleship-panel, .battleship-label {
-    height: 3.5vw;
-    width: 3.5vw;
+    height: 4.5vw;
+    width: 4.5vw;
     background-color: var(--main-plus-two);
     border-radius: 5px;
     margin: 1px; 
@@ -574,8 +574,8 @@ Gameboard Styles
 
 .battleship-monitor, .battleship-target-display, .battleship-monitor-label {
     background-color: var(--main-minus-two);
-    height: 50vw; 
-    width: 50vw; 
+    height: 60vw; 
+    width: 60vw; 
     margin: 0 auto 10px auto; 
     border-radius: 5px;
     padding: 5px; 
@@ -589,12 +589,12 @@ Gameboard Styles
 }
 
 .battleship-monitor-label > h2 {
-    font-size: 1.4rem; 
+    font-size: 2rem; 
 }
 
 .battleship-target-display {
     height: auto;
-    width: 75vw;
+    width: 78vw;
     padding: 10px; 
 }
 
