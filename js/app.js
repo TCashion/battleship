@@ -168,6 +168,7 @@ function renderBs(playerOneShipLayout, playerTwoShipLayout) {
     renderDestroyed(playerTwoShips);
     checkWinnerBs(); 
     renderShipStatus();
+    
 };
 
 function defineBoard(playerXShipLayout) {
@@ -306,6 +307,9 @@ function parseShipVert(playerBoardToAddShip, startingColCoord, startingRowCoord,
 
 // updates player One's ship status bar
 function renderShipStatus() {
+    statusIndicatorEls.forEach(function(el) {
+        el.setAttribute("style", "background-color: var(--main-plus-two)")
+    });
     playerOneShips.forEach(function(ship) {
         if (ship.type === "carrier") updateStatusIndicator(ship, 0);
         if (ship.type === "battleship") updateStatusIndicator(ship, 5);
