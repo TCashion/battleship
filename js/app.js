@@ -35,8 +35,8 @@ let playerTwoAiObj;
 /*----- cached element references -----*/
 
 const battleshipGameboard = document.querySelector("#battleship-board");
-const playerOneRadarDivEls = document.querySelectorAll("#playerOneRadar .battleship-panel");
-const playerOneDisplayDivEls = document.querySelectorAll("#playerOneDisplay .battleship-panel");
+const playerOneRadarDivEls = document.querySelectorAll("#player-one-radar .battleship-panel");
+const playerOneDisplayDivEls = document.querySelectorAll("#player-one-display .battleship-panel");
 const targetDisplayEl = document.querySelector(".battleship-target-display");
 const targetInput = document.getElementById("battleship-target-input");
 const targetInputLabel = document.querySelector("#battleship-input-form > label");

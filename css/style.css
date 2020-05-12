@@ -547,6 +547,10 @@ Gameboard Styles
     display: flex; 
 }
 
+#player-one-radar .battleship-panel:hover {
+    border: solid 1px var(--main-plus-two); 
+}
+
 .battleship-gamecol {
     display: flex;
     flex-direction: column;
