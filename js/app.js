@@ -34,6 +34,7 @@ let playerTwoAiObj;
 
 /*----- cached element references -----*/
 
+const battleshipGameboard = document.querySelector("#battleship-board");
 const playerOneRadarDivEls = document.querySelectorAll("#playerOneRadar .battleship-panel");
 const playerOneDisplayDivEls = document.querySelectorAll("#playerOneDisplay .battleship-panel");
 const targetDisplayEl = document.querySelector(".battleship-target-display");
@@ -113,11 +114,11 @@ class aiShip extends Ship {
 
 /*----- event listeners -----*/
 
-targetDisplayEl.addEventListener("click", function(e) {
+battleshipGameboard.addEventListener("click", function(e) {
     e.preventDefault(); 
-    const eventTarget = e.target.id;
-    if (eventTarget === "battleship-render-button") initBs();
-    if (eventTarget === "battleship-fire-button") {
+    const eventTarget = e.target;
+    if (eventTarget.id === "battleship-render-button") initBs();
+    if (eventTarget.id === "battleship-fire-button") {
         if (turnBs === 1 && inputRegEx.test(targetInput.value)) {
             const shot = targetInput.value; 
             targetInput.value = ""; 
@@ -130,6 +131,13 @@ targetDisplayEl.addEventListener("click", function(e) {
             targetInputLabel.style.display = "block";
         };
     };
+    if (Array.from(playerOneRadarDivEls).includes(eventTarget) && turnBs === 1) {
+        const cellId = eventTarget.id.split("");
+        const rowIdx = parseInt(cellId[3]);
+        const colIdx = parseInt(cellId[1]);
+        const shotArr = [rowIdx, colIdx];
+        playerOneShot(shotArr);
+    }
 });
 
 /*----- functions -----*/
