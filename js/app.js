@@ -79,6 +79,7 @@ class aiShip extends Ship {
             // case: after first hit: keep tying until 2nd hit. 
             if (this.knownHits[0].row === 0) {
                 this.knownMisses.push("top row");
+                this.findRestOfShip(); 
                 shotArr = [this.knownHits[0].row, this.knownHits[0].col + 1];
                 return shotArr;
             } else if (typeof playerOneShipLayout[this.knownHits[0].row - 1][this.knownHits[0].col] !== "number" && this.knownHits[0].row !== 0) {
@@ -104,7 +105,7 @@ class aiShip extends Ship {
     };
     findRestOfShip() { 
         const currentShip = this; 
-        if (currentShip.knownHits.length >= 2 || currentShip.knownMisses.length >= 2) {
+        if ((currentShip.knownHits.length + currentShip.knownMisses.length) >= 2) {
             currentShip.boardLocation = (playerOneShips.find(function(ship) {
                 return (ship.identifier === currentShip.identifier); 
             })).boardLocation;
