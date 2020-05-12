@@ -167,6 +167,7 @@ function renderBs(playerOneShipLayout, playerTwoShipLayout) {
     renderDestroyed(playerOneShips);
     renderDestroyed(playerTwoShips);
     checkWinnerBs(); 
+    renderShipStatus();
 };
 
 function defineBoard(playerXShipLayout) {
@@ -301,6 +302,23 @@ function parseShipVert(playerBoardToAddShip, startingColCoord, startingRowCoord,
     for (let i = 0; i < ship.length; i++) {
         playerBoardToAddShip[startingColCoord + i][startingRowCoord] = ship.identifier;
     }
+};
+
+// updates player One's ship status bar
+function renderShipStatus() {
+    playerOneShips.forEach(function(ship) {
+        if (ship.type === "carrier") updateStatusIndicator(ship, 0);
+        if (ship.type === "battleship") updateStatusIndicator(ship, 5);
+        if (ship.type === "cruiser") updateStatusIndicator(ship, 9);
+        if (ship.type === "submarine") updateStatusIndicator(ship, 12);
+        if (ship.type === "destroyer") updateStatusIndicator(ship, 15);
+    });
+};
+
+function updateStatusIndicator(ship, indicatorIdx) {
+    for (let i = indicatorIdx; i < indicatorIdx + ship.hitSpaces; i++) {
+        statusIndicatorEls[i].style.backgroundColor = "red";
+    }; 
 };
 
 // at game start, update the data in each player's ship objects, according to random ship placements
