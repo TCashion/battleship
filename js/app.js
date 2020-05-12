@@ -38,8 +38,9 @@ const battleshipGameboard = document.querySelector("#battleship-board");
 const playerOneRadarDivEls = document.querySelectorAll("#player-one-radar .battleship-panel");
 const playerOneDisplayDivEls = document.querySelectorAll("#player-one-display .battleship-panel");
 const targetDisplayEl = document.querySelector(".battleship-target-display");
-const targetInput = document.getElementById("battleship-target-input");
-const targetInputLabel = document.querySelector("#battleship-input-form > label");
+const targetInputEl = document.getElementById("battleship-target-input");
+const targetInputLabelEls = document.querySelector("#battleship-input-form > label");
+const statusIndicatorEls = document.querySelectorAll(".ship-status-indicator"); 
 class Ship {
     constructor(type, identifier, length, hitSpaces) {
         this.type = type; 
@@ -120,16 +121,16 @@ battleshipGameboard.addEventListener("click", function(e) {
     const eventTarget = e.target;
     if (eventTarget.id === "battleship-render-button") initBs();
     if (eventTarget.id === "battleship-fire-button") {
-        if (turnBs === 1 && inputRegEx.test(targetInput.value)) {
-            const shot = targetInput.value; 
-            targetInput.value = ""; 
+        if (turnBs === 1 && inputRegEx.test(targetInputEl.value)) {
+            const shot = targetInputEl.value; 
+            targetInputEl.value = ""; 
             playerOneShot(translateShot(shot));
         } else if (!turnBs) {
-            targetInputLabel.innerText = "Press the 'Reset' button to start the game!";
-            targetInputLabel.style.display = "block";
+            targetInputLabelEls.innerText = "Press the 'Reset' button to start the game!";
+            targetInputLabelEls.style.display = "block";
         } else {
-            targetInputLabel.innerText = "Not a valid shot";
-            targetInputLabel.style.display = "block";
+            targetInputLabelEls.innerText = "Not a valid shot";
+            targetInputLabelEls.style.display = "block";
         };
     };
     if (Array.from(playerOneRadarDivEls).includes(eventTarget) && turnBs === 1) {
@@ -160,7 +161,7 @@ function initBs() {
 }
 
 function renderBs(playerOneShipLayout, playerTwoShipLayout) {
-    targetInputLabel.style.display = "none";
+    targetInputLabelEls.style.display = "none";
     matchArraysToDom(playerOneShipLayout);
     matchArraysToDom(playerTwoShipLayout);
     renderDestroyed(playerOneShips);
@@ -403,10 +404,10 @@ function playerOneShot(shotArr) {
     if (shotPlacement === null) playerTwoShipLayout[shotArr[0]][shotArr[1]] = -1;
     if (shotPlacement === 1 || shotPlacement === -1) {
         turnBs = 1;
-        targetInputLabel.style.display = "block";
-        targetInputLabel.innerText = "You've already taken that shot!";
+        targetInputLabelEls.style.display = "block";
+        targetInputLabelEls.innerText = "You've already taken that shot!";
     } else {
-        targetInputLabel.style.display = "none";
+        targetInputLabelEls.style.display = "none";
         turnBs *= -1;
         renderBs(playerOneShipLayout, playerTwoShipLayout);
         playerTwoShot(); 
