@@ -21,13 +21,33 @@ const sounds = [
     {
         "title": "radar", 
         "path": "./audio/radar(edited).mp3", 
-        "volume": 0.4
+        "volume": 0.4,
+        "loop": false
     }, 
     {
         "title": "playerOneShotTypeOne", 
         "path": "./audio/live-shot(edited).mp3", 
-        "volume": 0.2
+        "volume": 0.2,
+        "loop": false
     },
+    {
+        "title": "backgroundTrack", 
+        "path": "./audio/navy-battleship-soundscape.flac", 
+        "volume": 0.08,
+        "loop": true
+    },
+    {
+        "title": "distantExplosion", 
+        "path": "./audio/distant-explosion.wav", 
+        "volume": 0.5,
+        "loop": false
+    },
+    {
+        "title": "shipSinking", 
+        "path": "./audio/ship-sinking.mp3", 
+        "volume": 0.3,
+        "loop": false
+    }
 ]
 
 const alphabet = ["A","B","C","D","E","F","G","H","I","J"];
@@ -62,6 +82,7 @@ class Ship {
         this.hitSpaces = 0;
         this.alive = true;
         this.boardLocation = [];
+        this.playDestroyedSound = false; 
     } 
     checkIfAlive() {
         if (this.hitSpaces === this.length) this.alive = false; 
@@ -179,6 +200,7 @@ function initBs() {
     updateShipObjects(-1);
     resetAnimationClasses(playerOneRadarDivEls);
     resetAnimationClasses(playerOneDisplayDivEls);
+    playSound("backgroundTrack");
     renderBs(playerOneShipLayout, playerTwoShipLayout);
 };
 
@@ -190,6 +212,7 @@ function renderBs(playerOneShipLayout, playerTwoShipLayout) {
     renderDestroyed(playerTwoShips);
     checkWinnerBs(); 
     renderShipStatus();
+    renderSounds();
 };
 
 function defineBoard(playerXShipLayout) {
@@ -356,12 +379,13 @@ function playSound(soundTitle) {
     });
     player.src = selectedSound.path;
     player.volume = selectedSound.volume;
+    if (selectedSound.loop === true) player.loop = true; 
     player.play();
 };
 
 // determine intervals for specific sounds
 function checkSoundInterval(divisor) {
-    let counter = 0; 
+    let counter = 1; 
     playerOneShipLayout.forEach(function(row) {
         row.forEach(function(cell) {
             if (cell === 1 || cell === -1){
@@ -369,9 +393,15 @@ function checkSoundInterval(divisor) {
             };
         });
     });
-    if (counter % divisor === 0) {
+    if (counter % divisor === 0 && turnBs === 1) {
         return true; 
     };
+};
+
+// play specific sounds at intervals
+function renderSounds() {
+    if (checkSoundInterval(15)) playSound("distantExplosion");
+    if (checkSoundInterval(20)) playSound("playerOneShotTypeOne");
 };
 
 // update player One's ship status bar
@@ -465,6 +495,10 @@ function renderDestroyed(playerXShips) {
                 elementToAnimate.style.backgroundColor = "red";
                 elementToAnimate.innerText = ship.identifier; 
             });
+            if (playerXShips === playerOneShips && ship.playDestroyedSound === false) {
+                playSound("shipSinking");
+                ship.playDestroyedSound = true; 
+            };
         };
     });
 };
@@ -504,7 +538,6 @@ function playerOneShot(shotArr) {
         targetInputLabelEls.style.display = "none";
         turnBs *= -1;
         renderBs(playerOneShipLayout, playerTwoShipLayout);
-        if (checkSoundInterval(15)) playSound("playerOneShotTypeOne");
         setTimeout(playerTwoShot, 250);
     };
 };
@@ -623,7 +656,7 @@ function playerTwoSpecificShot(shotArr, targetShip) {
         turnBs *= -1;
     } else {
         turnBs *= -1; 
-    };
+    }; 
     renderBs(playerOneShipLayout, playerTwoShipLayout);
 };
 
