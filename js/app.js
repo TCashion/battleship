@@ -168,7 +168,6 @@ function renderBs(playerOneShipLayout, playerTwoShipLayout) {
     renderDestroyed(playerTwoShips);
     checkWinnerBs(); 
     renderShipStatus();
-    
 };
 
 function defineBoard(playerXShipLayout) {
@@ -199,7 +198,7 @@ function matchArraysToDom(shipLayout) {
 }
 
 function generateBoardColors(shipLayout, rowIdx, colIdx) {
-    // rowIdx and colIdx transposed on these two so that board matches array
+    // rowIdx and colIdx transposed on this step so that board matches array layout exactly 
     let shipLayoutPositionValue = shipLayout[rowIdx][colIdx];
     const divElColor = boardColors.renderShipColors(shipLayoutPositionValue);
     const radarDivEl = document.getElementById(`x${colIdx}y${rowIdx}`); 
