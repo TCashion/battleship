@@ -694,7 +694,7 @@ Battleship Animations
   
 @keyframes fade-to-orange {
     from {
-        background-color: grey;
+        background-color: var(--main-plus-one);
     }
     to {
         background-color: orange; 

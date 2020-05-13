@@ -42,7 +42,7 @@ const targetInputEl = document.getElementById("battleship-target-input");
 const targetInputLabelEls = document.querySelector("#battleship-input-form > label");
 const statusIndicatorEls = document.querySelectorAll(".ship-status-indicator"); 
 class Ship {
-    constructor(type, identifier, length, hitSpaces) {
+    constructor(type, identifier, length) {
         this.type = type; 
         this.identifier = identifier;
         this.length = length; 
@@ -218,12 +218,14 @@ function generateBoardColors(shipLayout, rowIdx, colIdx) {
 };
 
 // manage animations during gameplay
-function animateElement(elementToAnimate, hit) {
-    if (hit === true) {
+function animateElement(elementToAnimate, hitStatus) {
+    if (hitStatus === "hit") {
         elementToAnimate.classList.add("fade-to-orange");
-    } else if (hit === false) {
+    } else if (hitStatus === "miss") {
         elementToAnimate.classList.add("fade-to-miss");
-    }
+    } else if (hitStatus === "destroyed") {
+        elementToAnimate.classList.add("fade-to-red");
+    };
 };
 
 // on initBs() invocation, remove all animation classes to avoid conflicts
@@ -406,14 +408,15 @@ function renderDestroyed(playerXShips) {
     playerXShips.forEach(function(ship) {
         if (ship.alive === false) {
             ship.boardLocation.forEach(function(location) {
-                let divEl; 
+                let elementToAnimate; 
                 if (playerXShips === playerOneShips) {
-                    divEl = document.getElementById(`X${location.col}Y${location.row}`);
+                    elementToAnimate = document.getElementById(`X${location.col}Y${location.row}`);
                 } else if (playerXShips === playerTwoShips) {
-                    divEl = document.getElementById(`x${location.col}y${location.row}`);
+                    elementToAnimate = document.getElementById(`x${location.col}y${location.row}`);
                 };
-                divEl.style.backgroundColor = "red";
-                divEl.innerText = ship.identifier; 
+                animateElement(elementToAnimate, "destroyed");
+                elementToAnimate.style.backgroundColor = "red";
+                elementToAnimate.innerText = ship.identifier; 
             });
         };
     });
@@ -446,7 +449,7 @@ function playerOneShot(shotArr) {
     if (shotPlacement === null) {
         playerTwoShipLayout[shotArr[0]][shotArr[1]] = -1;
         const elementToAnimate = document.getElementById(`x${shotArr[1]}y${shotArr[0]}`);
-        animateElement(elementToAnimate, false);
+        animateElement(elementToAnimate, "miss");
     };
     if (shotPlacement === 1 || shotPlacement === -1) {
         turnBs = 1;
@@ -466,13 +469,13 @@ function registerHit(player, shotArr) {
     if (player === 1) {
         shipsToUpdate = playerTwoShips;
         const elementToAnimate = document.getElementById(`x${shotArr[1]}y${shotArr[0]}`);
-        animateElement(elementToAnimate, true);
+        animateElement(elementToAnimate, "hit");
     };
     if (player === -1) {
         shipsToUpdate = playerOneShips;
         updatePlayerTwoIntel(1, shotArr); 
         const elementToAnimate = document.getElementById(`X${shotArr[1]}Y${shotArr[0]}`);
-        animateElement(elementToAnimate, true);
+        animateElement(elementToAnimate, "hit");
     };
     shipsToUpdate.forEach(function(ship) {
         ship.boardLocation.forEach(function(location) {
@@ -548,7 +551,7 @@ function playerTwoRandomShot() {
     if (shotPlacement === null) {
         playerOneShipLayout[shotArr[0]][shotArr[1]] = -1;
         const elementToAnimate = document.getElementById(`X${shotArr[1]}Y${shotArr[0]}`);
-        animateElement(elementToAnimate, false);
+        animateElement(elementToAnimate, "miss");
     };
     if (shotPlacement === 1 || shotPlacement === -1) {
         turnBs = -1; 
@@ -570,7 +573,7 @@ function playerTwoSpecificShot(shotArr, targetShip) {
         playerOneShipLayout[shotArr[0]][shotArr[1]] = -1;
         addKnownMiss(shotArr, targetShip);
         const elementToAnimate = document.getElementById(`X${shotArr[1]}Y${shotArr[0]}`);
-        animateElement(elementToAnimate, false);
+        animateElement(elementToAnimate, "miss");
         turnBs *= -1;
     } else {
         turnBs *= -1; 
