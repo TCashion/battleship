@@ -15,7 +15,11 @@ Open up the game in your browser, click the "Reset" button, enter your first sho
 ## Sound Clips
 
 * Cannon fire: https://freesound.org/people/kingngnicoli/sounds/274826/
-     * (edited for length before implementation)
+     * Used for playerOneShotTypeOne (edited for length before implementation)
+* Radar sweep: https://freesound.org/people/MATTIX/sounds/449671/ 
+     * Used for radar sound on game initiation (edited for length before implementation)
+
+     
 * Distant explosion (for player One hits): https://freesound.org/people/SoundFX.studio/sounds/456272/
 * Distant explosion option 2: https://freesound.org/people/Mr_KeybOred/sounds/372086/ 
      * potentially good for p2 cannon
@@ -23,7 +27,6 @@ Open up the game in your browser, click the "Reset" button, enter your first sho
      * metallic clank: https://freesound.org/people/Jadester64/sounds/370739/
      * explosion: https://freesound.org/people/OGsoundFX/sounds/423118/
 * Naval battle sounds: https://freesound.org/people/qubodup/sounds/162365/
-* Radar sweep: https://freesound.org/people/MATTIX/sounds/449671/ 
 * Underwater explosion: https://freesound.org/people/VitaWrap/sounds/434545/ 
 * Submarine dive siren: https://freesound.org/people/kallesv/sounds/460161/ 
 * Warship cannon fire: https://freesound.org/people/morganpurkis/sounds/399853/ 

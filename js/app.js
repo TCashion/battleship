@@ -17,9 +17,22 @@ const boardColors = {
         }
     }
 };
-boardLength = 10;
+const sounds = [
+    {
+        "title": "radar", 
+        "path": "./audio/radar(edited).mp3", 
+        "volume": 0.4
+    }, 
+    {
+        "title": "playerOneShotTypeOne", 
+        "path": "./audio/live-shot(edited).mp3", 
+        "volume": 0.2
+    },
+]
+
 const alphabet = ["A","B","C","D","E","F","G","H","I","J"];
 const inputRegEx = /(^[A-Ja-j][1][0]$|^[A-Ja-j][1-9]$)\b/;
+boardLength = 10;
 
 /*----- app's state (variables) -----*/
 
@@ -125,7 +138,7 @@ battleshipGameboard.addEventListener("click", function(e) {
     e.preventDefault(); 
     const eventTarget = e.target;
     if (eventTarget.id === "battleship-render-button") {
-        if (playerOneShipLayout === undefined) playRadarSound(); 
+        if (playerOneShipLayout === undefined) playSound("radar"); 
         initBs();
     };
     if (eventTarget.id === "battleship-fire-button") {
@@ -335,11 +348,30 @@ function parseShipVert(playerBoardToAddShip, startingColCoord, startingRowCoord,
 };
 
 // handle audio
-function playRadarSound() {
+function playSound(soundTitle) {
     const player = new Audio(); 
-    player.src = "./audio/radar(edited).mp3";
-    player.volume = 0.7;
+    let selectedSound;
+    sounds.forEach(function(sound) {
+        if (sound.title === soundTitle) selectedSound = sound;
+    });
+    player.src = selectedSound.path;
+    player.volume = selectedSound.volume;
     player.play();
+};
+
+// determine intervals for specific sounds
+function checkSoundInterval(divisor) {
+    let counter = 0; 
+    playerOneShipLayout.forEach(function(row) {
+        row.forEach(function(cell) {
+            if (cell === 1 || cell === -1){
+                counter += 1;
+            };
+        });
+    });
+    if (counter % divisor === 0) {
+        return true; 
+    };
 };
 
 // update player One's ship status bar
@@ -472,6 +504,7 @@ function playerOneShot(shotArr) {
         targetInputLabelEls.style.display = "none";
         turnBs *= -1;
         renderBs(playerOneShipLayout, playerTwoShipLayout);
+        if (checkSoundInterval(15)) playSound("playerOneShotTypeOne");
         setTimeout(playerTwoShot, 250);
     };
 };
