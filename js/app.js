@@ -159,7 +159,7 @@ function initBs() {
     resetAnimationClasses(playerOneRadarDivEls);
     resetAnimationClasses(playerOneDisplayDivEls);
     renderBs(playerOneShipLayout, playerTwoShipLayout);
-}
+};
 
 function renderBs(playerOneShipLayout, playerTwoShipLayout) {
     targetInputLabelEls.style.display = "none";
@@ -196,7 +196,7 @@ function matchArraysToDom(shipLayout) {
             generateBoardColors(shipLayout, rowIdx, colIdx);
         };
     };
-}
+};
 
 function generateBoardColors(shipLayout, rowIdx, colIdx) {
     // rowIdx and colIdx transposed on this step so that board matches array layout exactly 
@@ -290,7 +290,7 @@ function shipCountVerifier(playerXShipLayout) {
         });
     });
     return shipCounter;
-}
+};
 
 // randomly lays ships out on board 
 function layoutShip(player, ship) {
@@ -312,22 +312,21 @@ function layoutShip(player, ship) {
 
 function randomNumber (max) {
     return Math.round(Math.random()*Math.floor(max));
-}
+};
 
 function parseShipHoriz(playerBoardToAddShip, startingColCoord, startingRowCoord, ship) {
     for (let i = 0; i < ship.length; i++) {
         playerBoardToAddShip[startingColCoord][startingRowCoord + i] = ship.identifier;
-    }
-
+    };
 };
 
 function parseShipVert(playerBoardToAddShip, startingColCoord, startingRowCoord, ship) {
     for (let i = 0; i < ship.length; i++) {
         playerBoardToAddShip[startingColCoord + i][startingRowCoord] = ship.identifier;
-    }
+    };
 };
 
-// updates player One's ship status bar
+// update player One's ship status bar
 function renderShipStatus() {
     statusIndicatorEls.forEach(function(el) {
         el.setAttribute("style", "background-color: var(--main-plus-two)")
@@ -421,8 +420,6 @@ function renderDestroyed(playerXShips) {
         };
     });
 };
-
-
 
 // translate shot from user input into data coordinates
 function translateShot(shot) {
