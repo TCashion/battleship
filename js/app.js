@@ -20,7 +20,7 @@ const boardColors = {
 const sounds = [
     {
         "title": "radar", 
-        "path": "./audio/radar(edited).mp3", 
+        "path": "./audio/radar-edited.mp3", 
         "volume": 0.4,
     }, 
     {
