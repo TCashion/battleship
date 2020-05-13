@@ -662,25 +662,31 @@ Gameboard Styles
 Battleship Animations
 **************************************** */
 
+.fade-to-miss {
+    animation-duration: 0.35s;
+    animation-name: fade-to-miss;
+    background-color: var(--main-plus-two); 
+}
+
 .fade-to-water {
     animation-duration: 0.35s;
     animation-name: fade-to-water;
     background-color: var(--main-plus-one); 
 }
   
-  .fade-to-ship {
+.fade-to-ship {
     animation-duration: 0.35s;
     animation-name: fade-to-water;
     background-color: var(--main-minus-one); 
 }
   
-  .fade-to-orange {
+.fade-to-orange {
     animation-duration: 0.35s;
     animation-name: fade-to-orange;
     background-color: orange; 
 }
   
-  .fade-to-red {
+.fade-to-red {
     animation-duration: 0.35s;
     animation-name: fade-to-red;
     background-color: red; 
@@ -719,6 +725,15 @@ Battleship Animations
     }
     to {
         background-color: var(--main-minus-one); 
+    }
+}
+
+@keyframes fade-to-miss {
+    from {
+        background-color: var(--main-plus-one);
+    }
+    to {
+        background-color: var(--main-plus-two); 
     }
 }
 

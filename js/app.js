@@ -216,6 +216,15 @@ function generateBoardColors(shipLayout, rowIdx, colIdx) {
     };  
 };
 
+// manage animations during gameplay
+function animateElement(elementToAnimate, hit) {
+    if (hit === true) {
+        elementToAnimate.classList.add("fade-to-orange");
+    } else if (hit === false) {
+        elementToAnimate.classList.add("fade-to-miss");
+    }
+}
+
 // creates each player's ship data objects
 function createShips() {
     playerOneShips = [];
@@ -422,7 +431,11 @@ function playerOneShot(shotArr) {
         registerHit(1, shotArr);
         playerTwoShipLayout[shotArr[0]][shotArr[1]] = 1;
     };
-    if (shotPlacement === null) playerTwoShipLayout[shotArr[0]][shotArr[1]] = -1;
+    if (shotPlacement === null) {
+        playerTwoShipLayout[shotArr[0]][shotArr[1]] = -1;
+        const elementToAnimate = document.getElementById(`x${shotArr[1]}y${shotArr[0]}`);
+        animateElement(elementToAnimate, false);
+    };
     if (shotPlacement === 1 || shotPlacement === -1) {
         turnBs = 1;
         targetInputLabelEls.style.display = "block";
@@ -438,10 +451,16 @@ function playerOneShot(shotArr) {
 // update ship data if ship is hit
 function registerHit(player, shotArr) {
     let shipsToUpdate;
-    if (player === 1) shipsToUpdate = playerTwoShips;
+    if (player === 1) {
+        shipsToUpdate = playerTwoShips;
+        const elementToAnimate = document.getElementById(`x${shotArr[1]}y${shotArr[0]}`);
+        animateElement(elementToAnimate, true);
+    };
     if (player === -1) {
         shipsToUpdate = playerOneShips;
         updatePlayerTwoIntel(1, shotArr); 
+        const elementToAnimate = document.getElementById(`X${shotArr[1]}Y${shotArr[0]}`);
+        animateElement(elementToAnimate, true);
     };
     shipsToUpdate.forEach(function(ship) {
         ship.boardLocation.forEach(function(location) {
@@ -514,7 +533,11 @@ function playerTwoRandomShot() {
         registerHit(-1, shotArr);
         playerOneShipLayout[shotArr[0]][shotArr[1]] = 1;
     };
-    if (shotPlacement === null) playerOneShipLayout[shotArr[0]][shotArr[1]] = -1;
+    if (shotPlacement === null) {
+        playerOneShipLayout[shotArr[0]][shotArr[1]] = -1;
+        const elementToAnimate = document.getElementById(`X${shotArr[1]}Y${shotArr[0]}`);
+        animateElement(elementToAnimate, false);
+    };
     if (shotPlacement === 1 || shotPlacement === -1) {
         turnBs = -1; 
         playerTwoRandomShot(); 
@@ -534,6 +557,8 @@ function playerTwoSpecificShot(shotArr, targetShip) {
     } else if (shotPlacement === null) {
         playerOneShipLayout[shotArr[0]][shotArr[1]] = -1;
         addKnownMiss(shotArr, targetShip);
+        const elementToAnimate = document.getElementById(`X${shotArr[1]}Y${shotArr[0]}`);
+        animateElement(elementToAnimate, false);
         turnBs *= -1;
     } else {
         turnBs *= -1; 
