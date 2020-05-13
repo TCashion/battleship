@@ -26,6 +26,8 @@ Open up the game in your browser, click the "Reset" button, enter your first sho
      * metallic clank: https://freesound.org/people/Jadester64/sounds/370739/
      * explosion: https://freesound.org/people/OGsoundFX/sounds/423118/
      * Submarine dive siren: https://freesound.org/people/kallesv/sounds/460161/ 
+* "Target acquired": https://freesound.org/people/tim.kahn/sounds/106314/
+     * Used (unedited) to indicate player Two ship sunk 
 
 
 

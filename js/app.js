@@ -42,6 +42,11 @@ const sounds = [
         "title": "shipSinking", 
         "path": "./audio/ship-sinking.mp3", 
         "volume": 0.3,
+    }, 
+    {
+        "title": "targetAcquired", 
+        "path": "./audio/target-acquired.wav", 
+        "volume": 0.15,
     }
 ];
 const alphabet = ["A","B","C","D","E","F","G","H","I","J"];
@@ -505,6 +510,10 @@ function renderDestroyed(playerXShips) {
             });
             if (playerXShips === playerOneShips && ship.playDestroyedSound === false) {
                 playSound("shipSinking");
+                ship.playDestroyedSound = true; 
+            };
+            if (playerXShips === playerTwoShips && ship.playDestroyedSound === false) {
+                playSound("targetAcquired");
                 ship.playDestroyedSound = true; 
             };
         };
