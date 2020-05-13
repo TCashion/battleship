@@ -83,6 +83,11 @@ class aiShip extends Ship {
                 this.findRestOfShip(); 
                 shotArr = [this.knownHits[0].row, this.knownHits[0].col + 1];
                 return shotArr;
+            } else if (this.knownHits[0].col === 9) {  
+                this.knownMisses.push("top row"); 
+                this.findRestOfShip(); 
+                shotArr = [this.knownHits[0].row + 1, this.knownHits[0].col]; 
+                return shotArr; 
             } else if (typeof playerOneShipLayout[this.knownHits[0].row - 1][this.knownHits[0].col] !== "number" && this.knownHits[0].row !== 0) {
                 shotArr = [this.knownHits[0].row - 1, this.knownHits[0].col];
                 return shotArr; 
