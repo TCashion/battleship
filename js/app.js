@@ -156,8 +156,9 @@ function initBs() {
     addShipsToBoard();
     updateShipObjects(1);
     updateShipObjects(-1);
+    resetAnimationClasses(playerOneRadarDivEls);
+    resetAnimationClasses(playerOneDisplayDivEls);
     renderBs(playerOneShipLayout, playerTwoShipLayout);
-    
 }
 
 function renderBs(playerOneShipLayout, playerTwoShipLayout) {
@@ -223,7 +224,18 @@ function animateElement(elementToAnimate, hit) {
     } else if (hit === false) {
         elementToAnimate.classList.add("fade-to-miss");
     }
-}
+};
+
+// on initBs() invocation, remove all animation classes to avoid conflicts
+function resetAnimationClasses(monitorDivEls) {
+    monitorDivEls.forEach(function(el) {
+            el.classList.remove("fade-to-orange");
+            el.classList.remove("fade-to-red");
+            el.classList.remove("fade-to-water");
+            el.classList.remove("fade-to-ship");
+            el.classList.remove("fade-to-miss");
+    });
+};
 
 // creates each player's ship data objects
 function createShips() {
