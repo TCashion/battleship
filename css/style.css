@@ -659,6 +659,44 @@ Gameboard Styles
 
 
 /* *************************************
+Battleship Animations
+**************************************** */
+
+.fade-to-orange {
+    animation-duration: 0.35s;
+    animation-name: fade-to-orange;
+    background-color: orange; 
+}
+
+.fade-to-red {
+    animation-duration: 0.35s;
+    animation-name: fade-to-red;
+    background-color: red; 
+}
+
+@keyframes fade-to-orange {
+    from {
+        background-color: grey;
+    }
+
+    to {
+        background-color: orange; 
+    }
+}
+
+@keyframes fade-to-red {
+    from {
+        background-color: orange;
+    }
+
+    to {
+        background-color: red; 
+    }
+}
+
+
+
+/* *************************************
 Media Queries
 **************************************** */
 
