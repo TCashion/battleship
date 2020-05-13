@@ -22,34 +22,28 @@ const sounds = [
         "title": "radar", 
         "path": "./audio/radar(edited).mp3", 
         "volume": 0.4,
-        "loop": false
     }, 
     {
         "title": "playerOneShotTypeOne", 
         "path": "./audio/live-shot(edited).mp3", 
         "volume": 0.2,
-        "loop": false
     },
     {
         "title": "backgroundTrack", 
         "path": "./audio/navy-battleship-soundscape.flac", 
         "volume": 0.08,
-        "loop": true
     },
     {
         "title": "distantExplosion", 
         "path": "./audio/distant-explosion.wav", 
         "volume": 0.5,
-        "loop": false
     },
     {
         "title": "shipSinking", 
         "path": "./audio/ship-sinking.mp3", 
         "volume": 0.3,
-        "loop": false
     }
-]
-
+];
 const alphabet = ["A","B","C","D","E","F","G","H","I","J"];
 const inputRegEx = /(^[A-Ja-j][1][0]$|^[A-Ja-j][1-9]$)\b/;
 boardLength = 10;
@@ -64,6 +58,7 @@ let playerOneShipLayout;
 let playerTwoShipLayout;
 let engageAi;                 
 let playerTwoAiObj;
+let loopPlayer;
 
 /*----- cached element references -----*/
 
@@ -200,8 +195,9 @@ function initBs() {
     updateShipObjects(-1);
     resetAnimationClasses(playerOneRadarDivEls);
     resetAnimationClasses(playerOneDisplayDivEls);
-    playSound("backgroundTrack");
     renderBs(playerOneShipLayout, playerTwoShipLayout);
+    if (loopPlayer) loopPlayer.pause(); 
+    playLoopTrack(); 
 };
 
 function renderBs(playerOneShipLayout, playerTwoShipLayout) {
@@ -370,7 +366,13 @@ function parseShipVert(playerBoardToAddShip, startingColCoord, startingRowCoord,
     };
 };
 
-// handle audio
+// render sounds
+function renderSounds() {
+    if (checkSoundInterval(15)) playSound("distantExplosion");
+    if (checkSoundInterval(20)) playSound("playerOneShotTypeOne");
+};
+
+// handle audio (non-loops)
 function playSound(soundTitle) {
     const player = new Audio(); 
     let selectedSound;
@@ -379,9 +381,21 @@ function playSound(soundTitle) {
     });
     player.src = selectedSound.path;
     player.volume = selectedSound.volume;
-    if (selectedSound.loop === true) player.loop = true; 
     player.play();
 };
+
+// handle audio background loop 
+function playLoopTrack() {
+    loopPlayer = new Audio();
+    let selectedSound;
+    sounds.forEach(function(sound) {
+        if (sound.title === "backgroundTrack") selectedSound = sound;
+    });
+    loopPlayer.src = selectedSound.path;
+    loopPlayer.volume = selectedSound.volume;
+    loopPlayer.loop = true; 
+    loopPlayer.play();
+}
 
 // determine intervals for specific sounds
 function checkSoundInterval(divisor) {
@@ -396,12 +410,6 @@ function checkSoundInterval(divisor) {
     if (counter % divisor === 0 && turnBs === 1) {
         return true; 
     };
-};
-
-// play specific sounds at intervals
-function renderSounds() {
-    if (checkSoundInterval(15)) playSound("distantExplosion");
-    if (checkSoundInterval(20)) playSound("playerOneShotTypeOne");
 };
 
 // update player One's ship status bar
