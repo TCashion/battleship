@@ -12,6 +12,18 @@ Open up the game in your browser, click the "Reset" button, enter your first sho
 * CSS
 * JS (vanilla)
 
+## Sound Clips
+
+* Cannon fire: https://freesound.org/people/kingngnicoli/sounds/274826/
+     * (edited for length before implementation)
+* Distant explosion (for player One hits): https://freesound.org/people/SoundFX.studio/sounds/456272/
+* Near explosion (for player Two hits): 
+* Naval battle sounds: https://freesound.org/people/qubodup/sounds/162365/
+* Radar sweep: https://freesound.org/people/MATTIX/sounds/449671/ 
+* Underwater explosion: https://freesound.org/people/VitaWrap/sounds/434545/ 
+* Submarine dive siren: https://freesound.org/people/kallesv/sounds/460161/ 
+* Warship cannon fire: https://freesound.org/people/morganpurkis/sounds/399853/ 
+
 ## Next Steps
 
 

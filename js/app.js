@@ -456,7 +456,7 @@ function playerOneShot(shotArr) {
         targetInputLabelEls.style.display = "none";
         turnBs *= -1;
         renderBs(playerOneShipLayout, playerTwoShipLayout);
-        setTimeout(playerTwoShot, 500);
+        setTimeout(playerTwoShot, 250);
     };
 };
 
