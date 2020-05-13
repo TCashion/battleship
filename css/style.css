@@ -876,7 +876,7 @@ Media Queries
         font-size: 1.8rem;
     }
 
-    .battleship-target-display, {
+    .battleship-target-display {
         grid-area: target;
         max-height: 250px;
         min-width: 250px;
