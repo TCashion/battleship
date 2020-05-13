@@ -543,6 +543,10 @@ Gameboard Styles
     display: flex; 
 }
 
+.battleship-row:last-of-type {
+    flex-direction: column;
+}
+
 .battleship-monitor {
     display: flex; 
 }
@@ -579,7 +583,7 @@ Gameboard Styles
     background-color: transparent;
 }
 
-.battleship-monitor, .battleship-target-display, .battleship-monitor-label, .battleship-status-display {
+.battleship-monitor, .battleship-target-display, .battleship-monitor-label, .battleship-status-display, .audio-toggle {
     background-color: var(--main-minus-two);
     height: 60vw; 
     width: 60vw; 
@@ -593,7 +597,7 @@ Gameboard Styles
     flex-direction: column; 
 }
 
-.battleship-status-display h4 {
+.battleship-status-display h4, .audio-toggle h4 {
     display: inline-block;
 }
 
@@ -605,6 +609,15 @@ Gameboard Styles
     display: inline-block;
     float: right; 
     margin: 2px; 
+}
+
+.audio-toggle {
+    display: flex;
+}
+
+.audio-toggle-radio {
+    height: 20px;
+    margin: 10px 0;
 }
 
 .battleship-monitor-label {
@@ -622,7 +635,7 @@ Gameboard Styles
     margin: 0;
 }
 
-.battleship-target-display, .battleship-status-display {
+.battleship-target-display, .battleship-status-display, .audio-toggle {
     height: auto;
     width: 78vw;
     padding: 10px; 
@@ -863,7 +876,7 @@ Media Queries
         font-size: 1.8rem;
     }
 
-    .battleship-target-display {
+    .battleship-target-display, {
         grid-area: target;
         max-height: 250px;
         min-width: 250px;
@@ -905,6 +918,10 @@ Media Queries
     .battleship-status-display h4 {
         font-size: 2rem;
         line-height: 1.2;
+    }
+
+    .audio-toggle {
+        width: 100%;
     }
 }
 
