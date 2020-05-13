@@ -124,7 +124,10 @@ class aiShip extends Ship {
 battleshipGameboard.addEventListener("click", function(e) {
     e.preventDefault(); 
     const eventTarget = e.target;
-    if (eventTarget.id === "battleship-render-button") initBs();
+    if (eventTarget.id === "battleship-render-button") {
+        if (playerOneShipLayout === undefined) playRadarSound(); 
+        initBs();
+    };
     if (eventTarget.id === "battleship-fire-button") {
         if (turnBs === 1 && inputRegEx.test(targetInputEl.value)) {
             const shot = targetInputEl.value; 
@@ -329,6 +332,14 @@ function parseShipVert(playerBoardToAddShip, startingColCoord, startingRowCoord,
     for (let i = 0; i < ship.length; i++) {
         playerBoardToAddShip[startingColCoord + i][startingRowCoord] = ship.identifier;
     };
+};
+
+// handle audio
+function playRadarSound() {
+    const player = new Audio(); 
+    player.src = "./audio/radar(edited).mp3";
+    player.volume = 0.7;
+    player.play();
 };
 
 // update player One's ship status bar

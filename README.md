@@ -17,15 +17,25 @@ Open up the game in your browser, click the "Reset" button, enter your first sho
 * Cannon fire: https://freesound.org/people/kingngnicoli/sounds/274826/
      * (edited for length before implementation)
 * Distant explosion (for player One hits): https://freesound.org/people/SoundFX.studio/sounds/456272/
+* Distant explosion option 2: https://freesound.org/people/Mr_KeybOred/sounds/372086/ 
+     * potentially good for p2 cannon
 * Near explosion (for player Two hits): 
+     * metallic clank: https://freesound.org/people/Jadester64/sounds/370739/
+     * explosion: https://freesound.org/people/OGsoundFX/sounds/423118/
 * Naval battle sounds: https://freesound.org/people/qubodup/sounds/162365/
 * Radar sweep: https://freesound.org/people/MATTIX/sounds/449671/ 
 * Underwater explosion: https://freesound.org/people/VitaWrap/sounds/434545/ 
 * Submarine dive siren: https://freesound.org/people/kallesv/sounds/460161/ 
 * Warship cannon fire: https://freesound.org/people/morganpurkis/sounds/399853/ 
+* Water splash: https://freesound.org/people/soundmary/sounds/196676/ 
+* Water splash option 2: https://freesound.org/people/genel/sounds/482953/
+* Water splash option 3: https://freesound.org/people/qubodup/sounds/212143/
 
 ## Next Steps
 
+* give player One the option to set their own board locations 
+* develop different levels of AI
+     * allow the player to select difficulty 
 
 
 Wireframe:
