@@ -6,11 +6,16 @@ My version of Battleship is a web-based version of the popular children's board 
 
 Open up the game in your browser, click the "Reset" button, enter your first shot coordinates into the target panel, and fire away! 
 
+## Screenshots
+
+Lorem ipsum.
+![]()
+
 ## Technologies Used 
 
 * HTML
 * CSS
-* JS (vanilla)
+* JavaScript (vanilla)
 
 ## Next Steps
 

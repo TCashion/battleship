@@ -613,11 +613,13 @@ Gameboard Styles
 
 .audio-toggle {
     display: flex;
+    justify-content: center;
 }
 
 .audio-toggle-radio {
     height: 20px;
     margin: 10px 0;
+    width: 15%; 
 }
 
 .battleship-monitor-label {
@@ -639,6 +641,12 @@ Gameboard Styles
     height: auto;
     width: 78vw;
     padding: 10px; 
+}
+
+.audio-toggle-label {
+    height: 20px;
+    margin: 10px 0;
+    line-height: 20px;
 }
 
 #battleship-input-form > label {
@@ -920,9 +928,6 @@ Media Queries
         line-height: 1.2;
     }
 
-    .audio-toggle {
-        width: 100%;
-    }
 }
 
 /* for desktop screens */
@@ -941,6 +946,7 @@ Media Queries
     .battleship-monitor, .battleship-monitor-label {
         height: 600px;
         width: 600px;
+        margin-right: 15px;
     }
 
     .battleship-monitor-label {
@@ -975,11 +981,10 @@ Media Queries
     .battleship-target-display, .battleship-status-display {
         width: 100%;
         height: auto;
-        margin: auto;
-        margin-left: 15px;
+        margin-top: 60%;
     }
 
-    .battleship-status-display h4 {
+    .battleship-status-display h4, .audio-toggle h4 {
         font-size: 2rem;
         line-height: 1.5;
     }
@@ -988,6 +993,10 @@ Media Queries
         height: 6px;
         width: 6px;
         margin: 10px 2px;
+    }
+
+    .audio-toggle {
+        width: 100%;
     }
 
 }
