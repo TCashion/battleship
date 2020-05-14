@@ -4,6 +4,8 @@ This version of Battleship is a web-based app based on the popular children's bo
 
 ## Getting Started
 
+Link: https://tcashion.github.io/battleship/ 
+
 Open up the game in your browser and click the "Reset" button to start the game. Enter your first shot coordinates into the target panel, and fire away! 
 
 You can also select your shots by clicking directly into the Radar board. 
