@@ -151,7 +151,6 @@ button {
     height: 5px;
     width: 5px;
     border-radius: 50%;
-    display: inline-block;
     float: right; 
     margin: 2px; 
 }
