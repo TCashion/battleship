@@ -21,7 +21,7 @@ body {
 }
 
 .container {
-    width: 100%;
+    width: auto;
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto; 
@@ -83,6 +83,9 @@ button {
 
 .battleship-row {
     display: flex; 
+    justify-content: center; 
+    align-items: center;
+    width: 100%;
 }
 
 .battleship-row:last-of-type {
@@ -129,7 +132,7 @@ button {
     background-color: var(--main-minus-two);
     height: 60vw; 
     width: 60vw; 
-    margin: 0 auto 10px auto; 
+    margin: 10px; 
     border-radius: 5px;
     padding: 5px; 
 }
@@ -156,6 +159,7 @@ button {
 .audio-toggle {
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .audio-toggle-radio {
@@ -165,7 +169,6 @@ button {
 }
 
 .battleship-monitor-label {
-    height: auto;
     width: 15vw;
     writing-mode: vertical-lr;
     text-orientation: upright;
@@ -181,7 +184,7 @@ button {
 
 .battleship-target-display, .battleship-status-display, .audio-toggle {
     height: auto;
-    width: 78vw;
+    width: 95%;
     padding: 10px; 
 }
 
@@ -313,6 +316,7 @@ Media Queries
     }
 
     .battleship-monitor-label {
+        height: 450px;
         width: 10vw;
         margin-right: 5px;
     }
@@ -325,10 +329,14 @@ Media Queries
         font-size: 1.8rem;
     }
 
+    .battleship-target-display, .battleship-status-display, .audio-toggle {
+        width: 540px;
+    }
+
     .battleship-target-display {
         grid-area: target;
         max-height: 250px;
-        min-width: 250px;
+
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -377,25 +385,16 @@ Media Queries
     #battleship-board {
         margin: 15px auto;
         display: grid;
-        grid-template-columns: 5fr 2fr;
+        grid-template-columns: 3fr 2fr;
         grid-template-rows: 1fr 1fr;
         grid-template-areas: 
         " radar target "
         " display status ";
     }
 
-    .battleship-monitor, .battleship-monitor-label {
-        height: 600px;
-        width: 600px;
-        margin-right: 15px;
-    }
-
     .battleship-monitor-label {
         width: 100px;
-    }
-
-    .battleship-monitor-label > h2 {
-        font-size: 5.5rem;
+        height: 450px;
     }
 
     .battleship-row:first-of-type {
@@ -408,21 +407,22 @@ Media Queries
 
     .battleship-row:nth-of-type(3) {
         grid-area: target;
+        align-items: flex-end;
     }
 
     .battleship-row:last-of-type {
         grid-area: status;
+        justify-content: flex-start;
     }
 
-    .battleship-panel, .battleship-label {
-        height: 50px;
-        width: 50px;
+    #battleship-board {
+        max-height: 975px;
+        max-width: 1000px;
     }
 
-    .battleship-target-display, .battleship-status-display {
-        width: 100%;
+    .battleship-target-display, .battleship-status-display, .audio-toggle {
         height: auto;
-        margin-top: 60%;
+        width: 95%;
     }
 
     .battleship-status-display h4, .audio-toggle h4 {
@@ -434,9 +434,5 @@ Media Queries
         height: 6px;
         width: 6px;
         margin: 10px 2px;
-    }
-
-    .audio-toggle {
-        width: 100%;
     }
 }
