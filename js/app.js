@@ -176,7 +176,7 @@ function initBs() {
     createSounds(); 
     if (loopPlayer) loopPlayer.pause(); 
     if (playerOneShipLayout === undefined) playSound("radar"); 
-    if (onToggle.checked) playLoopTrack(); 
+    playLoopTrack(); 
     // create ships & layout
     playerOneRadarDivEls.forEach(div => div.innerText = "");
     playerOneDisplayDivEls.forEach(div => div.innerText = "");
@@ -384,7 +384,7 @@ function playSound(soundTitle) {
     });
     player.src = selectedSound.path;
     player.volume = selectedSound.volume;
-    player.play();
+    if (onToggle.checked) player.play();
 };
 
 // handle audio background loop 
@@ -397,7 +397,7 @@ function playLoopTrack() {
     loopPlayer.src = selectedSound.path;
     loopPlayer.volume = selectedSound.volume;
     loopPlayer.loop = true; 
-    loopPlayer.play();
+    if (onToggle.checked) loopPlayer.play();
 }
 
 // determine intervals for specific sounds
