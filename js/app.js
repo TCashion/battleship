@@ -17,38 +17,6 @@ const boardColors = {
         }
     }
 };
-// const sounds = [
-//     {
-//         "title": "radar", 
-//         "path": "./audio/radar-edited.mp3", 
-//         "volume": 0.4,
-//     }, 
-//     {
-//         "title": "playerOneShotTypeOne", 
-//         "path": "./audio/live-shot(edited).mp3", 
-//         "volume": 0.2,
-//     },
-//     {
-//         "title": "backgroundTrack", 
-//         "path": "./audio/navy-battleship-soundscape.flac", 
-//         "volume": 0.08,
-//     },
-//     {
-//         "title": "distantExplosion", 
-//         "path": "./audio/distant-explosion.wav", 
-//         "volume": 0.5,
-//     },
-//     {
-//         "title": "shipSinking", 
-//         "path": "./audio/ship-sinking.mp3", 
-//         "volume": 0.3,
-//     }, 
-//     {
-//         "title": "targetAcquired", 
-//         "path": "./audio/target-acquired.wav", 
-//         "volume": 0.15,
-//     }
-// ];
 const alphabet = ["A","B","C","D","E","F","G","H","I","J"];
 const inputRegEx = /(^[A-Ja-j][1][0]$|^[A-Ja-j][1-9]$)\b/;
 boardLength = 10;
