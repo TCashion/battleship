@@ -23,356 +23,357 @@
     <script defer src="js/app.js"></script>
 
 </head>
-<body>
-    <div class="container" id="battleship-board">
-        <div class="battleship-row">
-            <div class="battleship-monitor-label"><h2 class="battleship-label-heading">RADAR</h2></div>
-            <div class="battleship-monitor" id="player-one-radar">
-                <div class="battleship-gamecol">
-                    <div class="battleship-label"> </div>
-                    <div class="battleship-label">A</div>
-                    <div class="battleship-label">B</div>
-                    <div class="battleship-label">C</div>
-                    <div class="battleship-label">D</div>
-                    <div class="battleship-label">E</div>
-                    <div class="battleship-label">F</div>
-                    <div class="battleship-label">G</div>
-                    <div class="battleship-label">H</div>
-                    <div class="battleship-label">I</div>
-                    <div class="battleship-label">J</div>
+    <body>
+        <div class="container" id="battleship-board">
+            <div class="battleship-row">
+                <div class="battleship-monitor-label"><h2 class="battleship-label-heading">RADAR</h2></div>
+                <div class="battleship-monitor" id="player-one-radar">
+                    <div class="battleship-gamecol">
+                        <div class="battleship-label"> </div>
+                        <div class="battleship-label">A</div>
+                        <div class="battleship-label">B</div>
+                        <div class="battleship-label">C</div>
+                        <div class="battleship-label">D</div>
+                        <div class="battleship-label">E</div>
+                        <div class="battleship-label">F</div>
+                        <div class="battleship-label">G</div>
+                        <div class="battleship-label">H</div>
+                        <div class="battleship-label">I</div>
+                        <div class="battleship-label">J</div>
+                    </div>
+                    <div class="battleship-gamecol">
+                        <div class="battleship-label">1</div>
+                        <div class="battleship-panel" id="x0y0"></div>
+                        <div class="battleship-panel" id="x0y1"></div>
+                        <div class="battleship-panel" id="x0y2"></div>
+                        <div class="battleship-panel" id="x0y3"></div>
+                        <div class="battleship-panel" id="x0y4"></div>
+                        <div class="battleship-panel" id="x0y5"></div>
+                        <div class="battleship-panel" id="x0y6"></div>
+                        <div class="battleship-panel" id="x0y7"></div>
+                        <div class="battleship-panel" id="x0y8"></div>
+                        <div class="battleship-panel" id="x0y9"></div>
+                    </div>
+                    <div class="battleship-gamecol">
+                        <div class="battleship-label">2</div>
+                        <div class="battleship-panel" id="x1y0"></div>
+                        <div class="battleship-panel" id="x1y1"></div>
+                        <div class="battleship-panel" id="x1y2"></div>
+                        <div class="battleship-panel" id="x1y3"></div>
+                        <div class="battleship-panel" id="x1y4"></div>
+                        <div class="battleship-panel" id="x1y5"></div>
+                        <div class="battleship-panel" id="x1y6"></div>
+                        <div class="battleship-panel" id="x1y7"></div>
+                        <div class="battleship-panel" id="x1y8"></div>
+                        <div class="battleship-panel" id="x1y9"></div>
+                    </div>
+                    <div class="battleship-gamecol">
+                        <div class="battleship-label">3</div>
+                        <div class="battleship-panel" id="x2y0"></div>
+                        <div class="battleship-panel" id="x2y1"></div>
+                        <div class="battleship-panel" id="x2y2"></div>
+                        <div class="battleship-panel" id="x2y3"></div>
+                        <div class="battleship-panel" id="x2y4"></div>
+                        <div class="battleship-panel" id="x2y5"></div>
+                        <div class="battleship-panel" id="x2y6"></div>
+                        <div class="battleship-panel" id="x2y7"></div>
+                        <div class="battleship-panel" id="x2y8"></div>
+                        <div class="battleship-panel" id="x2y9"></div>
+                    </div>
+                    <div class="battleship-gamecol">
+                        <div class="battleship-label">4</div>
+                        <div class="battleship-panel" id="x3y0"></div>
+                        <div class="battleship-panel" id="x3y1"></div>
+                        <div class="battleship-panel" id="x3y2"></div>
+                        <div class="battleship-panel" id="x3y3"></div>
+                        <div class="battleship-panel" id="x3y4"></div>
+                        <div class="battleship-panel" id="x3y5"></div>
+                        <div class="battleship-panel" id="x3y6"></div>
+                        <div class="battleship-panel" id="x3y7"></div>
+                        <div class="battleship-panel" id="x3y8"></div>
+                        <div class="battleship-panel" id="x3y9"></div>
+                    </div>
+                    <div class="battleship-gamecol">
+                        <div class="battleship-label">5</div>
+                        <div class="battleship-panel" id="x4y0"></div>
+                        <div class="battleship-panel" id="x4y1"></div>
+                        <div class="battleship-panel" id="x4y2"></div>
+                        <div class="battleship-panel" id="x4y3"></div>
+                        <div class="battleship-panel" id="x4y4"></div>
+                        <div class="battleship-panel" id="x4y5"></div>
+                        <div class="battleship-panel" id="x4y6"></div>
+                        <div class="battleship-panel" id="x4y7"></div>
+                        <div class="battleship-panel" id="x4y8"></div>
+                        <div class="battleship-panel" id="x4y9"></div>
+                    </div>
+                    <div class="battleship-gamecol">
+                        <div class="battleship-label">6</div>
+                        <div class="battleship-panel" id="x5y0"></div>
+                        <div class="battleship-panel" id="x5y1"></div>
+                        <div class="battleship-panel" id="x5y2"></div>
+                        <div class="battleship-panel" id="x5y3"></div>
+                        <div class="battleship-panel" id="x5y4"></div>
+                        <div class="battleship-panel" id="x5y5"></div>
+                        <div class="battleship-panel" id="x5y6"></div>
+                        <div class="battleship-panel" id="x5y7"></div>
+                        <div class="battleship-panel" id="x5y8"></div>
+                        <div class="battleship-panel" id="x5y9"></div>
+                    </div>
+                    <div class="battleship-gamecol">
+                        <div class="battleship-label">7</div>
+                        <div class="battleship-panel" id="x6y0"></div>
+                        <div class="battleship-panel" id="x6y1"></div>
+                        <div class="battleship-panel" id="x6y2"></div>
+                        <div class="battleship-panel" id="x6y3"></div>
+                        <div class="battleship-panel" id="x6y4"></div>
+                        <div class="battleship-panel" id="x6y5"></div>
+                        <div class="battleship-panel" id="x6y6"></div>
+                        <div class="battleship-panel" id="x6y7"></div>
+                        <div class="battleship-panel" id="x6y8"></div>
+                        <div class="battleship-panel" id="x6y9"></div>
+                    </div>
+                    <div class="battleship-gamecol">
+                        <div class="battleship-label">8</div>
+                        <div class="battleship-panel" id="x7y0"></div>
+                        <div class="battleship-panel" id="x7y1"></div>
+                        <div class="battleship-panel" id="x7y2"></div>
+                        <div class="battleship-panel" id="x7y3"></div>
+                        <div class="battleship-panel" id="x7y4"></div>
+                        <div class="battleship-panel" id="x7y5"></div>
+                        <div class="battleship-panel" id="x7y6"></div>
+                        <div class="battleship-panel" id="x7y7"></div>
+                        <div class="battleship-panel" id="x7y8"></div>
+                        <div class="battleship-panel" id="x7y9"></div>
+                    </div>
+                    <div class="battleship-gamecol">
+                        <div class="battleship-label">9</div>
+                        <div class="battleship-panel" id="x8y0"></div>
+                        <div class="battleship-panel" id="x8y1"></div>
+                        <div class="battleship-panel" id="x8y2"></div>
+                        <div class="battleship-panel" id="x8y3"></div>
+                        <div class="battleship-panel" id="x8y4"></div>
+                        <div class="battleship-panel" id="x8y5"></div>
+                        <div class="battleship-panel" id="x8y6"></div>
+                        <div class="battleship-panel" id="x8y7"></div>
+                        <div class="battleship-panel" id="x8y8"></div>
+                        <div class="battleship-panel" id="x8y9"></div>
+                    </div>
+                    <div class="battleship-gamecol">
+                        <div class="battleship-label">10</div>
+                        <div class="battleship-panel" id="x9y0"></div>
+                        <div class="battleship-panel" id="x9y1"></div>
+                        <div class="battleship-panel" id="x9y2"></div>
+                        <div class="battleship-panel" id="x9y3"></div>
+                        <div class="battleship-panel" id="x9y4"></div>
+                        <div class="battleship-panel" id="x9y5"></div>
+                        <div class="battleship-panel" id="x9y6"></div>
+                        <div class="battleship-panel" id="x9y7"></div>
+                        <div class="battleship-panel" id="x9y8"></div>
+                        <div class="battleship-panel" id="x9y9"></div>
+                    </div>
                 </div>
-                <div class="battleship-gamecol">
-                    <div class="battleship-label">1</div>
-                    <div class="battleship-panel" id="x0y0"></div>
-                    <div class="battleship-panel" id="x0y1"></div>
-                    <div class="battleship-panel" id="x0y2"></div>
-                    <div class="battleship-panel" id="x0y3"></div>
-                    <div class="battleship-panel" id="x0y4"></div>
-                    <div class="battleship-panel" id="x0y5"></div>
-                    <div class="battleship-panel" id="x0y6"></div>
-                    <div class="battleship-panel" id="x0y7"></div>
-                    <div class="battleship-panel" id="x0y8"></div>
-                    <div class="battleship-panel" id="x0y9"></div>
+            </div>
+            <div class="battleship-row">
+                <div class="battleship-monitor-label"><h2 class="battleship-label-heading">DISPLAY</h2></div>
+                <div class="battleship-monitor" id="player-one-display">
+                    <div class="battleship-gamecol">
+                        <div class="battleship-label"> </div>
+                        <div class="battleship-label">A</div>
+                        <div class="battleship-label">B</div>
+                        <div class="battleship-label">C</div>
+                        <div class="battleship-label">D</div>
+                        <div class="battleship-label">E</div>
+                        <div class="battleship-label">F</div>
+                        <div class="battleship-label">G</div>
+                        <div class="battleship-label">H</div>
+                        <div class="battleship-label">I</div>
+                        <div class="battleship-label">J</div>
+                    </div>
+                    <div class="battleship-gamecol">
+                        <div class="battleship-label">1</div>
+                        <div class="battleship-panel" id="X0Y0"></div>
+                        <div class="battleship-panel" id="X0Y1"></div>
+                        <div class="battleship-panel" id="X0Y2"></div>
+                        <div class="battleship-panel" id="X0Y3"></div>
+                        <div class="battleship-panel" id="X0Y4"></div>
+                        <div class="battleship-panel" id="X0Y5"></div>
+                        <div class="battleship-panel" id="X0Y6"></div>
+                        <div class="battleship-panel" id="X0Y7"></div>
+                        <div class="battleship-panel" id="X0Y8"></div>
+                        <div class="battleship-panel" id="X0Y9"></div>
+                    </div>
+                    <div class="battleship-gamecol">
+                        <div class="battleship-label">2</div>
+                        <div class="battleship-panel" id="X1Y0"></div>
+                        <div class="battleship-panel" id="X1Y1"></div>
+                        <div class="battleship-panel" id="X1Y2"></div>
+                        <div class="battleship-panel" id="X1Y3"></div>
+                        <div class="battleship-panel" id="X1Y4"></div>
+                        <div class="battleship-panel" id="X1Y5"></div>
+                        <div class="battleship-panel" id="X1Y6"></div>
+                        <div class="battleship-panel" id="X1Y7"></div>
+                        <div class="battleship-panel" id="X1Y8"></div>
+                        <div class="battleship-panel" id="X1Y9"></div>
+                    </div>
+                    <div class="battleship-gamecol">
+                        <div class="battleship-label">3</div>
+                        <div class="battleship-panel" id="X2Y0"></div>
+                        <div class="battleship-panel" id="X2Y1"></div>
+                        <div class="battleship-panel" id="X2Y2"></div>
+                        <div class="battleship-panel" id="X2Y3"></div>
+                        <div class="battleship-panel" id="X2Y4"></div>
+                        <div class="battleship-panel" id="X2Y5"></div>
+                        <div class="battleship-panel" id="X2Y6"></div>
+                        <div class="battleship-panel" id="X2Y7"></div>
+                        <div class="battleship-panel" id="X2Y8"></div>
+                        <div class="battleship-panel" id="X2Y9"></div>
+                    </div>
+                    <div class="battleship-gamecol">
+                        <div class="battleship-label">4</div>
+                        <div class="battleship-panel" id="X3Y0"></div>
+                        <div class="battleship-panel" id="X3Y1"></div>
+                        <div class="battleship-panel" id="X3Y2"></div>
+                        <div class="battleship-panel" id="X3Y3"></div>
+                        <div class="battleship-panel" id="X3Y4"></div>
+                        <div class="battleship-panel" id="X3Y5"></div>
+                        <div class="battleship-panel" id="X3Y6"></div>
+                        <div class="battleship-panel" id="X3Y7"></div>
+                        <div class="battleship-panel" id="X3Y8"></div>
+                        <div class="battleship-panel" id="X3Y9"></div>
+                    </div>
+                    <div class="battleship-gamecol">
+                        <div class="battleship-label">5</div>
+                        <div class="battleship-panel" id="X4Y0"></div>
+                        <div class="battleship-panel" id="X4Y1"></div>
+                        <div class="battleship-panel" id="X4Y2"></div>
+                        <div class="battleship-panel" id="X4Y3"></div>
+                        <div class="battleship-panel" id="X4Y4"></div>
+                        <div class="battleship-panel" id="X4Y5"></div>
+                        <div class="battleship-panel" id="X4Y6"></div>
+                        <div class="battleship-panel" id="X4Y7"></div>
+                        <div class="battleship-panel" id="X4Y8"></div>
+                        <div class="battleship-panel" id="X4Y9"></div>
+                    </div>
+                    <div class="battleship-gamecol">
+                        <div class="battleship-label">6</div>
+                        <div class="battleship-panel" id="X5Y0"></div>
+                        <div class="battleship-panel" id="X5Y1"></div>
+                        <div class="battleship-panel" id="X5Y2"></div>
+                        <div class="battleship-panel" id="X5Y3"></div>
+                        <div class="battleship-panel" id="X5Y4"></div>
+                        <div class="battleship-panel" id="X5Y5"></div>
+                        <div class="battleship-panel" id="X5Y6"></div>
+                        <div class="battleship-panel" id="X5Y7"></div>
+                        <div class="battleship-panel" id="X5Y8"></div>
+                        <div class="battleship-panel" id="X5Y9"></div>
+                    </div>
+                    <div class="battleship-gamecol">
+                        <div class="battleship-label">7</div>
+                        <div class="battleship-panel" id="X6Y0"></div>
+                        <div class="battleship-panel" id="X6Y1"></div>
+                        <div class="battleship-panel" id="X6Y2"></div>
+                        <div class="battleship-panel" id="X6Y3"></div>
+                        <div class="battleship-panel" id="X6Y4"></div>
+                        <div class="battleship-panel" id="X6Y5"></div>
+                        <div class="battleship-panel" id="X6Y6"></div>
+                        <div class="battleship-panel" id="X6Y7"></div>
+                        <div class="battleship-panel" id="X6Y8"></div>
+                        <div class="battleship-panel" id="X6Y9"></div>
+                    </div>
+                    <div class="battleship-gamecol">
+                        <div class="battleship-label">8</div>
+                        <div class="battleship-panel" id="X7Y0"></div>
+                        <div class="battleship-panel" id="X7Y1"></div>
+                        <div class="battleship-panel" id="X7Y2"></div>
+                        <div class="battleship-panel" id="X7Y3"></div>
+                        <div class="battleship-panel" id="X7Y4"></div>
+                        <div class="battleship-panel" id="X7Y5"></div>
+                        <div class="battleship-panel" id="X7Y6"></div>
+                        <div class="battleship-panel" id="X7Y7"></div>
+                        <div class="battleship-panel" id="X7Y8"></div>
+                        <div class="battleship-panel" id="X7Y9"></div>
+                    </div>
+                    <div class="battleship-gamecol">
+                        <div class="battleship-label">9</div>
+                        <div class="battleship-panel" id="X8Y0"></div>
+                        <div class="battleship-panel" id="X8Y1"></div>
+                        <div class="battleship-panel" id="X8Y2"></div>
+                        <div class="battleship-panel" id="X8Y3"></div>
+                        <div class="battleship-panel" id="X8Y4"></div>
+                        <div class="battleship-panel" id="X8Y5"></div>
+                        <div class="battleship-panel" id="X8Y6"></div>
+                        <div class="battleship-panel" id="X8Y7"></div>
+                        <div class="battleship-panel" id="X8Y8"></div>
+                        <div class="battleship-panel" id="X8Y9"></div>
+                    </div>
+                    <div class="battleship-gamecol">
+                        <div class="battleship-label">10</div>
+                        <div class="battleship-panel" id="X9Y0"></div>
+                        <div class="battleship-panel" id="X9Y1"></div>
+                        <div class="battleship-panel" id="X9Y2"></div>
+                        <div class="battleship-panel" id="X9Y3"></div>
+                        <div class="battleship-panel" id="X9Y4"></div>
+                        <div class="battleship-panel" id="X9Y5"></div>
+                        <div class="battleship-panel" id="X9Y6"></div>
+                        <div class="battleship-panel" id="X9Y7"></div>
+                        <div class="battleship-panel" id="X9Y8"></div>
+                        <div class="battleship-panel" id="X9Y9"></div>
+                    </div>
                 </div>
-                <div class="battleship-gamecol">
-                    <div class="battleship-label">2</div>
-                    <div class="battleship-panel" id="x1y0"></div>
-                    <div class="battleship-panel" id="x1y1"></div>
-                    <div class="battleship-panel" id="x1y2"></div>
-                    <div class="battleship-panel" id="x1y3"></div>
-                    <div class="battleship-panel" id="x1y4"></div>
-                    <div class="battleship-panel" id="x1y5"></div>
-                    <div class="battleship-panel" id="x1y6"></div>
-                    <div class="battleship-panel" id="x1y7"></div>
-                    <div class="battleship-panel" id="x1y8"></div>
-                    <div class="battleship-panel" id="x1y9"></div>
+            </div>
+            <div class="battleship-row">
+                <div class="battleship-target-display">
+                    <form id="battleship-input-form">
+                        <label for="battleship-target-input">You've already taken that shot!</label>
+                        <input id="battleship-target-input" placeholder="Designate target">
+                        <button type="submit" class="battleship-button" id="battleship-fire-button">Fire!</button>
+                    </form>
+                    <button class="battleship-button" id="battleship-render-button">Reset</button>
                 </div>
-                <div class="battleship-gamecol">
-                    <div class="battleship-label">3</div>
-                    <div class="battleship-panel" id="x2y0"></div>
-                    <div class="battleship-panel" id="x2y1"></div>
-                    <div class="battleship-panel" id="x2y2"></div>
-                    <div class="battleship-panel" id="x2y3"></div>
-                    <div class="battleship-panel" id="x2y4"></div>
-                    <div class="battleship-panel" id="x2y5"></div>
-                    <div class="battleship-panel" id="x2y6"></div>
-                    <div class="battleship-panel" id="x2y7"></div>
-                    <div class="battleship-panel" id="x2y8"></div>
-                    <div class="battleship-panel" id="x2y9"></div>
+            </div>
+            <div class="battleship-row">
+                <div class="battleship-status-display">
+                    <div>
+                        <h4>Aircraft Carrier ("A")</h4>
+                        <div class="ship-status-indicator"></div>
+                        <div class="ship-status-indicator"></div>
+                        <div class="ship-status-indicator"></div>
+                        <div class="ship-status-indicator"></div>
+                        <div class="ship-status-indicator"></div>
+                    </div>
+                    <div>
+                        <h4>Battleship ("B")</h4>
+                        <div class="ship-status-indicator"></div>
+                        <div class="ship-status-indicator"></div>
+                        <div class="ship-status-indicator"></div>
+                        <div class="ship-status-indicator"></div>
+                    </div>
+                    <div>
+                        <h4>Cruiser ("C")</h4>
+                        <div class="ship-status-indicator"></div>
+                        <div class="ship-status-indicator"></div>
+                        <div class="ship-status-indicator"></div>
+                    </div>
+                    <div>
+                        <h4>Submarine ("S")</h4>
+                        <div class="ship-status-indicator"></div>
+                        <div class="ship-status-indicator"></div>
+                        <div class="ship-status-indicator"></div>
+                    </div>
+                    <div>
+                        <h4>Destroyer ("D")</h4>
+                        <div class="ship-status-indicator"></div>
+                        <div class="ship-status-indicator"></div>
+                    </div>
                 </div>
-                <div class="battleship-gamecol">
-                    <div class="battleship-label">4</div>
-                    <div class="battleship-panel" id="x3y0"></div>
-                    <div class="battleship-panel" id="x3y1"></div>
-                    <div class="battleship-panel" id="x3y2"></div>
-                    <div class="battleship-panel" id="x3y3"></div>
-                    <div class="battleship-panel" id="x3y4"></div>
-                    <div class="battleship-panel" id="x3y5"></div>
-                    <div class="battleship-panel" id="x3y6"></div>
-                    <div class="battleship-panel" id="x3y7"></div>
-                    <div class="battleship-panel" id="x3y8"></div>
-                    <div class="battleship-panel" id="x3y9"></div>
-                </div>
-                <div class="battleship-gamecol">
-                    <div class="battleship-label">5</div>
-                    <div class="battleship-panel" id="x4y0"></div>
-                    <div class="battleship-panel" id="x4y1"></div>
-                    <div class="battleship-panel" id="x4y2"></div>
-                    <div class="battleship-panel" id="x4y3"></div>
-                    <div class="battleship-panel" id="x4y4"></div>
-                    <div class="battleship-panel" id="x4y5"></div>
-                    <div class="battleship-panel" id="x4y6"></div>
-                    <div class="battleship-panel" id="x4y7"></div>
-                    <div class="battleship-panel" id="x4y8"></div>
-                    <div class="battleship-panel" id="x4y9"></div>
-                </div>
-                <div class="battleship-gamecol">
-                    <div class="battleship-label">6</div>
-                    <div class="battleship-panel" id="x5y0"></div>
-                    <div class="battleship-panel" id="x5y1"></div>
-                    <div class="battleship-panel" id="x5y2"></div>
-                    <div class="battleship-panel" id="x5y3"></div>
-                    <div class="battleship-panel" id="x5y4"></div>
-                    <div class="battleship-panel" id="x5y5"></div>
-                    <div class="battleship-panel" id="x5y6"></div>
-                    <div class="battleship-panel" id="x5y7"></div>
-                    <div class="battleship-panel" id="x5y8"></div>
-                    <div class="battleship-panel" id="x5y9"></div>
-                </div>
-                <div class="battleship-gamecol">
-                    <div class="battleship-label">7</div>
-                    <div class="battleship-panel" id="x6y0"></div>
-                    <div class="battleship-panel" id="x6y1"></div>
-                    <div class="battleship-panel" id="x6y2"></div>
-                    <div class="battleship-panel" id="x6y3"></div>
-                    <div class="battleship-panel" id="x6y4"></div>
-                    <div class="battleship-panel" id="x6y5"></div>
-                    <div class="battleship-panel" id="x6y6"></div>
-                    <div class="battleship-panel" id="x6y7"></div>
-                    <div class="battleship-panel" id="x6y8"></div>
-                    <div class="battleship-panel" id="x6y9"></div>
-                </div>
-                <div class="battleship-gamecol">
-                    <div class="battleship-label">8</div>
-                    <div class="battleship-panel" id="x7y0"></div>
-                    <div class="battleship-panel" id="x7y1"></div>
-                    <div class="battleship-panel" id="x7y2"></div>
-                    <div class="battleship-panel" id="x7y3"></div>
-                    <div class="battleship-panel" id="x7y4"></div>
-                    <div class="battleship-panel" id="x7y5"></div>
-                    <div class="battleship-panel" id="x7y6"></div>
-                    <div class="battleship-panel" id="x7y7"></div>
-                    <div class="battleship-panel" id="x7y8"></div>
-                    <div class="battleship-panel" id="x7y9"></div>
-                </div>
-                <div class="battleship-gamecol">
-                    <div class="battleship-label">9</div>
-                    <div class="battleship-panel" id="x8y0"></div>
-                    <div class="battleship-panel" id="x8y1"></div>
-                    <div class="battleship-panel" id="x8y2"></div>
-                    <div class="battleship-panel" id="x8y3"></div>
-                    <div class="battleship-panel" id="x8y4"></div>
-                    <div class="battleship-panel" id="x8y5"></div>
-                    <div class="battleship-panel" id="x8y6"></div>
-                    <div class="battleship-panel" id="x8y7"></div>
-                    <div class="battleship-panel" id="x8y8"></div>
-                    <div class="battleship-panel" id="x8y9"></div>
-                </div>
-                <div class="battleship-gamecol">
-                    <div class="battleship-label">10</div>
-                    <div class="battleship-panel" id="x9y0"></div>
-                    <div class="battleship-panel" id="x9y1"></div>
-                    <div class="battleship-panel" id="x9y2"></div>
-                    <div class="battleship-panel" id="x9y3"></div>
-                    <div class="battleship-panel" id="x9y4"></div>
-                    <div class="battleship-panel" id="x9y5"></div>
-                    <div class="battleship-panel" id="x9y6"></div>
-                    <div class="battleship-panel" id="x9y7"></div>
-                    <div class="battleship-panel" id="x9y8"></div>
-                    <div class="battleship-panel" id="x9y9"></div>
+                <div class="audio-toggle">
+                    <h4>Audio Controls:</h4>
+                    <input class="audio-toggle-radio" type="radio" id="audio-on" name="audio" value="on" checked> 
+                    <label class="audio-toggle-label" for="audio-on">On</label>
+                    <input class="audio-toggle-radio" type="radio" id="audio-off" value="off" name="audio"> 
+                    <label class="audio-toggle-label" for="audio-off">Off</label>
                 </div>
             </div>
         </div>
-        <div class="battleship-row">
-            <div class="battleship-monitor-label"><h2 class="battleship-label-heading">DISPLAY</h2></div>
-            <div class="battleship-monitor" id="player-one-display">
-                <div class="battleship-gamecol">
-                    <div class="battleship-label"> </div>
-                    <div class="battleship-label">A</div>
-                    <div class="battleship-label">B</div>
-                    <div class="battleship-label">C</div>
-                    <div class="battleship-label">D</div>
-                    <div class="battleship-label">E</div>
-                    <div class="battleship-label">F</div>
-                    <div class="battleship-label">G</div>
-                    <div class="battleship-label">H</div>
-                    <div class="battleship-label">I</div>
-                    <div class="battleship-label">J</div>
-                </div>
-                <div class="battleship-gamecol">
-                    <div class="battleship-label">1</div>
-                    <div class="battleship-panel" id="X0Y0"></div>
-                    <div class="battleship-panel" id="X0Y1"></div>
-                    <div class="battleship-panel" id="X0Y2"></div>
-                    <div class="battleship-panel" id="X0Y3"></div>
-                    <div class="battleship-panel" id="X0Y4"></div>
-                    <div class="battleship-panel" id="X0Y5"></div>
-                    <div class="battleship-panel" id="X0Y6"></div>
-                    <div class="battleship-panel" id="X0Y7"></div>
-                    <div class="battleship-panel" id="X0Y8"></div>
-                    <div class="battleship-panel" id="X0Y9"></div>
-                </div>
-                <div class="battleship-gamecol">
-                    <div class="battleship-label">2</div>
-                    <div class="battleship-panel" id="X1Y0"></div>
-                    <div class="battleship-panel" id="X1Y1"></div>
-                    <div class="battleship-panel" id="X1Y2"></div>
-                    <div class="battleship-panel" id="X1Y3"></div>
-                    <div class="battleship-panel" id="X1Y4"></div>
-                    <div class="battleship-panel" id="X1Y5"></div>
-                    <div class="battleship-panel" id="X1Y6"></div>
-                    <div class="battleship-panel" id="X1Y7"></div>
-                    <div class="battleship-panel" id="X1Y8"></div>
-                    <div class="battleship-panel" id="X1Y9"></div>
-                </div>
-                <div class="battleship-gamecol">
-                    <div class="battleship-label">3</div>
-                    <div class="battleship-panel" id="X2Y0"></div>
-                    <div class="battleship-panel" id="X2Y1"></div>
-                    <div class="battleship-panel" id="X2Y2"></div>
-                    <div class="battleship-panel" id="X2Y3"></div>
-                    <div class="battleship-panel" id="X2Y4"></div>
-                    <div class="battleship-panel" id="X2Y5"></div>
-                    <div class="battleship-panel" id="X2Y6"></div>
-                    <div class="battleship-panel" id="X2Y7"></div>
-                    <div class="battleship-panel" id="X2Y8"></div>
-                    <div class="battleship-panel" id="X2Y9"></div>
-                </div>
-                <div class="battleship-gamecol">
-                    <div class="battleship-label">4</div>
-                    <div class="battleship-panel" id="X3Y0"></div>
-                    <div class="battleship-panel" id="X3Y1"></div>
-                    <div class="battleship-panel" id="X3Y2"></div>
-                    <div class="battleship-panel" id="X3Y3"></div>
-                    <div class="battleship-panel" id="X3Y4"></div>
-                    <div class="battleship-panel" id="X3Y5"></div>
-                    <div class="battleship-panel" id="X3Y6"></div>
-                    <div class="battleship-panel" id="X3Y7"></div>
-                    <div class="battleship-panel" id="X3Y8"></div>
-                    <div class="battleship-panel" id="X3Y9"></div>
-                </div>
-                <div class="battleship-gamecol">
-                    <div class="battleship-label">5</div>
-                    <div class="battleship-panel" id="X4Y0"></div>
-                    <div class="battleship-panel" id="X4Y1"></div>
-                    <div class="battleship-panel" id="X4Y2"></div>
-                    <div class="battleship-panel" id="X4Y3"></div>
-                    <div class="battleship-panel" id="X4Y4"></div>
-                    <div class="battleship-panel" id="X4Y5"></div>
-                    <div class="battleship-panel" id="X4Y6"></div>
-                    <div class="battleship-panel" id="X4Y7"></div>
-                    <div class="battleship-panel" id="X4Y8"></div>
-                    <div class="battleship-panel" id="X4Y9"></div>
-                </div>
-                <div class="battleship-gamecol">
-                    <div class="battleship-label">6</div>
-                    <div class="battleship-panel" id="X5Y0"></div>
-                    <div class="battleship-panel" id="X5Y1"></div>
-                    <div class="battleship-panel" id="X5Y2"></div>
-                    <div class="battleship-panel" id="X5Y3"></div>
-                    <div class="battleship-panel" id="X5Y4"></div>
-                    <div class="battleship-panel" id="X5Y5"></div>
-                    <div class="battleship-panel" id="X5Y6"></div>
-                    <div class="battleship-panel" id="X5Y7"></div>
-                    <div class="battleship-panel" id="X5Y8"></div>
-                    <div class="battleship-panel" id="X5Y9"></div>
-                </div>
-                <div class="battleship-gamecol">
-                    <div class="battleship-label">7</div>
-                    <div class="battleship-panel" id="X6Y0"></div>
-                    <div class="battleship-panel" id="X6Y1"></div>
-                    <div class="battleship-panel" id="X6Y2"></div>
-                    <div class="battleship-panel" id="X6Y3"></div>
-                    <div class="battleship-panel" id="X6Y4"></div>
-                    <div class="battleship-panel" id="X6Y5"></div>
-                    <div class="battleship-panel" id="X6Y6"></div>
-                    <div class="battleship-panel" id="X6Y7"></div>
-                    <div class="battleship-panel" id="X6Y8"></div>
-                    <div class="battleship-panel" id="X6Y9"></div>
-                </div>
-                <div class="battleship-gamecol">
-                    <div class="battleship-label">8</div>
-                    <div class="battleship-panel" id="X7Y0"></div>
-                    <div class="battleship-panel" id="X7Y1"></div>
-                    <div class="battleship-panel" id="X7Y2"></div>
-                    <div class="battleship-panel" id="X7Y3"></div>
-                    <div class="battleship-panel" id="X7Y4"></div>
-                    <div class="battleship-panel" id="X7Y5"></div>
-                    <div class="battleship-panel" id="X7Y6"></div>
-                    <div class="battleship-panel" id="X7Y7"></div>
-                    <div class="battleship-panel" id="X7Y8"></div>
-                    <div class="battleship-panel" id="X7Y9"></div>
-                </div>
-                <div class="battleship-gamecol">
-                    <div class="battleship-label">9</div>
-                    <div class="battleship-panel" id="X8Y0"></div>
-                    <div class="battleship-panel" id="X8Y1"></div>
-                    <div class="battleship-panel" id="X8Y2"></div>
-                    <div class="battleship-panel" id="X8Y3"></div>
-                    <div class="battleship-panel" id="X8Y4"></div>
-                    <div class="battleship-panel" id="X8Y5"></div>
-                    <div class="battleship-panel" id="X8Y6"></div>
-                    <div class="battleship-panel" id="X8Y7"></div>
-                    <div class="battleship-panel" id="X8Y8"></div>
-                    <div class="battleship-panel" id="X8Y9"></div>
-                </div>
-                <div class="battleship-gamecol">
-                    <div class="battleship-label">10</div>
-                    <div class="battleship-panel" id="X9Y0"></div>
-                    <div class="battleship-panel" id="X9Y1"></div>
-                    <div class="battleship-panel" id="X9Y2"></div>
-                    <div class="battleship-panel" id="X9Y3"></div>
-                    <div class="battleship-panel" id="X9Y4"></div>
-                    <div class="battleship-panel" id="X9Y5"></div>
-                    <div class="battleship-panel" id="X9Y6"></div>
-                    <div class="battleship-panel" id="X9Y7"></div>
-                    <div class="battleship-panel" id="X9Y8"></div>
-                    <div class="battleship-panel" id="X9Y9"></div>
-                </div>
-            </div>
-        </div>
-        <div class="battleship-row">
-            <div class="battleship-target-display">
-                <form id="battleship-input-form">
-                    <label for="battleship-target-input">You've already taken that shot!</label>
-                    <input id="battleship-target-input" placeholder="Designate target">
-                    <button type="submit" class="battleship-button" id="battleship-fire-button">Fire!</button>
-                </form>
-                <button class="battleship-button" id="battleship-render-button">Reset</button>
-            </div>
-        </div>
-        <div class="battleship-row">
-            <div class="battleship-status-display">
-                <div>
-                    <h4>Aircraft Carrier ("A")</h4>
-                    <div class="ship-status-indicator"></div>
-                    <div class="ship-status-indicator"></div>
-                    <div class="ship-status-indicator"></div>
-                    <div class="ship-status-indicator"></div>
-                    <div class="ship-status-indicator"></div>
-                </div>
-                <div>
-                    <h4>Battleship ("B")</h4>
-                    <div class="ship-status-indicator"></div>
-                    <div class="ship-status-indicator"></div>
-                    <div class="ship-status-indicator"></div>
-                    <div class="ship-status-indicator"></div>
-                </div>
-                <div>
-                    <h4>Cruiser ("C")</h4>
-                    <div class="ship-status-indicator"></div>
-                    <div class="ship-status-indicator"></div>
-                    <div class="ship-status-indicator"></div>
-                </div>
-                <div>
-                    <h4>Submarine ("S")</h4>
-                    <div class="ship-status-indicator"></div>
-                    <div class="ship-status-indicator"></div>
-                    <div class="ship-status-indicator"></div>
-                </div>
-                <div>
-                    <h4>Destroyer ("D")</h4>
-                    <div class="ship-status-indicator"></div>
-                    <div class="ship-status-indicator"></div>
-                </div>
-            </div>
-            <div class="audio-toggle">
-                <h4>Audio Controls:</h4>
-                <input class="audio-toggle-radio" type="radio" id="audio-on" name="audio" value="on" checked> 
-                <label class="audio-toggle-label" for="audio-on">On</label>
-                <input class="audio-toggle-radio" type="radio" id="audio-off" value="off" name="audio"> 
-                <label class="audio-toggle-label" for="audio-off">Off</label>
-            </div>
-        </div>
-    </div>
-</body>
+    </body>
+</html>
