@@ -1,8 +1,8 @@
 /*----- constants -----*/
 
 const battleshipPlayerColors = {
-    "1": "var(--main-minus-one)",         // player1
-    "-1": "var(--main-color)"             // player2
+    "1": "var(--main-minus-one)",         
+    "-1": "var(--main-color)"             
 };
 const boardColors = {
     "null": "var(--main-plus-one)",
@@ -417,8 +417,6 @@ function checkSoundInterval(divisor) {
 
 // handle audio control toggle
 function handleRadioToggle(eventTarget) {
-    // const onToggle = document.getElementById("audio-on");
-    // const offToggle = document.getElementById("audio-off");
     if(onToggle.checked) {
         loopPlayer.muted = false;
         player.muted = false; 
