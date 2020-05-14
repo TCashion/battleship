@@ -32,6 +32,7 @@ let playerTwoShipLayout;
 let engageAi;                 
 let playerTwoAiObj;
 let sounds; 
+let player; 
 let loopPlayer;
 
 /*----- cached element references -----*/
@@ -132,12 +133,13 @@ class aiShip extends Ship {
 /*----- event listeners -----*/
 
 battleshipGameboard.addEventListener("click", function(e) {
-    e.preventDefault(); 
     const eventTarget = e.target;
     if (eventTarget.id === "battleship-render-button") {
+        e.preventDefault(); 
         initBs();
     };
     if (eventTarget.id === "battleship-fire-button") {
+        e.preventDefault(); 
         if (turnBs === 1 && inputRegEx.test(targetInputEl.value)) {
             const shot = targetInputEl.value; 
             targetInputEl.value = ""; 
@@ -150,13 +152,16 @@ battleshipGameboard.addEventListener("click", function(e) {
             targetInputLabelEls.style.display = "block";
         };
     };
+    if (eventTarget.classList.contains("audio-toggle-radio")) {
+        handleRadioToggle(eventTarget);
+    };
     if (Array.from(playerOneRadarDivEls).includes(eventTarget) && turnBs === 1) {
         const cellId = eventTarget.id.split("");
         const rowIdx = parseInt(cellId[3]);
         const colIdx = parseInt(cellId[1]);
         const shotArr = [rowIdx, colIdx];
         playerOneShot(shotArr);
-    }
+    };
 });
 
 /*----- functions -----*/
@@ -370,7 +375,7 @@ function renderSounds() {
 
 // handle audio (non-loops)
 function playSound(soundTitle) {
-    const player = new Audio(); 
+    player = new Audio(); 
     let selectedSound;
     sounds.forEach(function(sound) {
         if (sound.title === soundTitle) selectedSound = sound;
@@ -405,6 +410,19 @@ function checkSoundInterval(divisor) {
     });
     if (counter % divisor === 0 && turnBs === 1) {
         return true; 
+    };
+};
+
+// handle audio control toggle
+function handleRadioToggle(eventTarget) {
+    const onToggle = document.getElementById("audio-on");
+    const offToggle = document.getElementById("audio-off");
+    if(onToggle.checked) {
+        loopPlayer.muted = false;
+        player.muted = false; 
+    } else if (offToggle.checked) {
+        loopPlayer.muted = true;
+        player.muted = true; 
     };
 };
 
