@@ -17,38 +17,38 @@ const boardColors = {
         }
     }
 };
-const sounds = [
-    {
-        "title": "radar", 
-        "path": "./audio/radar-edited.mp3", 
-        "volume": 0.4,
-    }, 
-    {
-        "title": "playerOneShotTypeOne", 
-        "path": "./audio/live-shot(edited).mp3", 
-        "volume": 0.2,
-    },
-    {
-        "title": "backgroundTrack", 
-        "path": "./audio/navy-battleship-soundscape.flac", 
-        "volume": 0.08,
-    },
-    {
-        "title": "distantExplosion", 
-        "path": "./audio/distant-explosion.wav", 
-        "volume": 0.5,
-    },
-    {
-        "title": "shipSinking", 
-        "path": "./audio/ship-sinking.mp3", 
-        "volume": 0.3,
-    }, 
-    {
-        "title": "targetAcquired", 
-        "path": "./audio/target-acquired.wav", 
-        "volume": 0.15,
-    }
-];
+// const sounds = [
+//     {
+//         "title": "radar", 
+//         "path": "./audio/radar-edited.mp3", 
+//         "volume": 0.4,
+//     }, 
+//     {
+//         "title": "playerOneShotTypeOne", 
+//         "path": "./audio/live-shot(edited).mp3", 
+//         "volume": 0.2,
+//     },
+//     {
+//         "title": "backgroundTrack", 
+//         "path": "./audio/navy-battleship-soundscape.flac", 
+//         "volume": 0.08,
+//     },
+//     {
+//         "title": "distantExplosion", 
+//         "path": "./audio/distant-explosion.wav", 
+//         "volume": 0.5,
+//     },
+//     {
+//         "title": "shipSinking", 
+//         "path": "./audio/ship-sinking.mp3", 
+//         "volume": 0.3,
+//     }, 
+//     {
+//         "title": "targetAcquired", 
+//         "path": "./audio/target-acquired.wav", 
+//         "volume": 0.15,
+//     }
+// ];
 const alphabet = ["A","B","C","D","E","F","G","H","I","J"];
 const inputRegEx = /(^[A-Ja-j][1][0]$|^[A-Ja-j][1-9]$)\b/;
 boardLength = 10;
@@ -63,6 +63,7 @@ let playerOneShipLayout;
 let playerTwoShipLayout;
 let engageAi;                 
 let playerTwoAiObj;
+let sounds; 
 let loopPlayer;
 
 /*----- cached element references -----*/
@@ -74,6 +75,13 @@ const targetDisplayEl = document.querySelector(".battleship-target-display");
 const targetInputEl = document.getElementById("battleship-target-input");
 const targetInputLabelEls = document.querySelector("#battleship-input-form > label");
 const statusIndicatorEls = document.querySelectorAll(".ship-status-indicator"); 
+class Sound {
+    constructor (title, path, volume) {
+        this.title = title;
+        this.path = path;
+        this.volume = volume;
+    }
+};
 class Ship {
     constructor(type, identifier, length) {
         this.type = type; 
@@ -159,7 +167,6 @@ battleshipGameboard.addEventListener("click", function(e) {
     e.preventDefault(); 
     const eventTarget = e.target;
     if (eventTarget.id === "battleship-render-button") {
-        if (playerOneShipLayout === undefined) playSound("radar"); 
         initBs();
     };
     if (eventTarget.id === "battleship-fire-button") {
@@ -190,6 +197,12 @@ function initBs() {
     turnBs = 1; 
     winnerBs = null; 
     engageAi = false; 
+    // manage initial sounds
+    createSounds(); 
+    if (loopPlayer) loopPlayer.pause(); 
+    if (playerOneShipLayout === undefined) playSound("radar"); 
+    playLoopTrack(); 
+    // create ships & layout
     playerOneRadarDivEls.forEach(div => div.innerText = "");
     playerOneDisplayDivEls.forEach(div => div.innerText = "");
     playerOneShipLayout = defineBoard(playerOneShipLayout);
@@ -201,8 +214,6 @@ function initBs() {
     resetAnimationClasses(playerOneRadarDivEls);
     resetAnimationClasses(playerOneDisplayDivEls);
     renderBs(playerOneShipLayout, playerTwoShipLayout);
-    if (loopPlayer) loopPlayer.pause(); 
-    playLoopTrack(); 
 };
 
 function renderBs(playerOneShipLayout, playerTwoShipLayout) {
@@ -369,6 +380,18 @@ function parseShipVert(playerBoardToAddShip, startingColCoord, startingRowCoord,
     for (let i = 0; i < ship.length; i++) {
         playerBoardToAddShip[startingColCoord + i][startingRowCoord] = ship.identifier;
     };
+};
+
+// create sound objects
+function createSounds() {
+    sounds = []; 
+    const soundOne = new Sound("radar", "./audio/radar-edited.mp3", 0.4)
+    const soundTwo = new Sound("playerOneShotTypeOne", "./audio/live-shot(edited).mp3", 0.2)
+    const soundThree = new Sound("backgroundTrack", "./audio/navy-battleship-soundscape.flac", 0.08)
+    const soundFour = new Sound("distantExplosion", "./audio/distant-explosion.wav", 0.5)
+    const soundFive = new Sound("shipSinking", "./audio/ship-sinking.mp3", 0.3)
+    const soundSix = new Sound("targetAcquired", "./audio/target-acquired.wav", 0.15)
+    sounds.push(soundOne, soundTwo, soundThree, soundFour, soundFive, soundSix);
 };
 
 // render sounds
