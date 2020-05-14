@@ -1,15 +1,55 @@
 # Battleship
 
-My version of Battleship is a web-based version of the popular children's board game. In this web-based game, play against your computer to try to find and sink your opponents' ships before the computer sinks all of yours! 
+This version of Battleship is a web-based app based on the popular children's board game. Play against your computer to try to find and sink its ships,  before it sinks all of yours! 
 
 ## Getting Started
 
-Open up the game in your browser, click the "Reset" button, enter your first shot coordinates into the target panel, and fire away! 
+Open up the game in your browser and click the "Reset" button to start the game. Enter your first shot coordinates into the target panel, and fire away! 
+
+You can also select your shots by clicking directly into the Radar board. 
+
+Mute the audio by toggling the button toward the botto of the app.  
 
 ## Screenshots
 
-Lorem ipsum.
-![]()
+This Battleship game includes:
+
+### A mobile-first design:
+
+![Mobile-first design](https://i.imgur.com/g4bVUds.png)
+
+### Responsiveness to desktop sizes:
+
+![Responsive to desktop sizes](https://i.imgur.com/q5Zz1AV.png)
+
+### Mutable audio:
+
+![Mutable Audio](https://i.imgur.com/G2R7Czx.png)
+
+### Ability to designate your target the classic way... :
+
+![Designate your target](https://i.imgur.com/uKBRLTh.png)
+
+### ... or by clicking on the game board:
+
+![Click your target](https://i.imgur.com/l1M8w1e.png)
+
+### Colorful rendering with animations:
+
+![Colorful rendering with animations](https://i.imgur.com/ptVI5xQ.png)
+
+### Ability to check your ships' status:
+
+![Ship status](https://i.imgur.com/QPNvORL.png)
+
+### Competitve AI:
+
+![AI](https://i.imgur.com/DWzF7V6.png)
+
+### And a message for the winner!:
+
+![Winner Message](https://i.imgur.com/ppS1Mah.png)
+
 
 ## Technologies Used 
 
@@ -18,6 +58,8 @@ Lorem ipsum.
 * JavaScript (vanilla)
 
 ## Next Steps
+
+### For future development, I would like to: 
 
 * give player One the option to set their own board locations 
 * develop different levels of AI
