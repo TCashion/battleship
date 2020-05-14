@@ -44,6 +44,8 @@ const targetDisplayEl = document.querySelector(".battleship-target-display");
 const targetInputEl = document.getElementById("battleship-target-input");
 const targetInputLabelEls = document.querySelector("#battleship-input-form > label");
 const statusIndicatorEls = document.querySelectorAll(".ship-status-indicator"); 
+const onToggle = document.getElementById("audio-on");
+const offToggle = document.getElementById("audio-off");
 class Sound {
     constructor (title, path, volume) {
         this.title = title;
@@ -174,7 +176,7 @@ function initBs() {
     createSounds(); 
     if (loopPlayer) loopPlayer.pause(); 
     if (playerOneShipLayout === undefined) playSound("radar"); 
-    playLoopTrack(); 
+    if (onToggle.checked) playLoopTrack(); 
     // create ships & layout
     playerOneRadarDivEls.forEach(div => div.innerText = "");
     playerOneDisplayDivEls.forEach(div => div.innerText = "");
@@ -415,8 +417,8 @@ function checkSoundInterval(divisor) {
 
 // handle audio control toggle
 function handleRadioToggle(eventTarget) {
-    const onToggle = document.getElementById("audio-on");
-    const offToggle = document.getElementById("audio-off");
+    // const onToggle = document.getElementById("audio-on");
+    // const offToggle = document.getElementById("audio-off");
     if(onToggle.checked) {
         loopPlayer.muted = false;
         player.muted = false; 
