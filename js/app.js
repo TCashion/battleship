@@ -155,7 +155,7 @@ battleshipGameboard.addEventListener("click", function(e) {
         };
     };
     if (eventTarget.classList.contains("audio-toggle-radio")) {
-        handleRadioToggle(eventTarget);
+        handleRadioToggle();
     };
     if (Array.from(playerOneRadarDivEls).includes(eventTarget) && turnBs === 1) {
         const cellId = eventTarget.id.split("");
@@ -416,7 +416,7 @@ function checkSoundInterval(divisor) {
 };
 
 // handle audio control toggle
-function handleRadioToggle(eventTarget) {
+function handleRadioToggle() {
     if(onToggle.checked) {
         loopPlayer.muted = false;
         player.muted = false; 
